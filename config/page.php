@@ -18,7 +18,7 @@ return [
             "htmlClass" => null,
             "lang" => "sv",
             "stylesheets" => [
-                "css/dbwebb-se.min.css",
+                "css/forum.min.css",
             ],
             "javascripts" => [
                 "js/responsive-menu.js",

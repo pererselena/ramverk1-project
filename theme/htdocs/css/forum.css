@@ -1,9 +1,5 @@
 /*!
- * Stylesheet to be the next version of the stylesheet for dbwebb.se.
- *
- * This stylesheet is a look-a-like the dbwebb.se stylesheet and it is
- * special for the design course. The style is used to show off various
- * constructions of the website to show how they could be styled.
+ * Stylesheet to be the next version of the stylesheet for ramverk1.
  */
 /**
  * Normalize and reset the style.
@@ -5587,6 +5583,61 @@ fieldset {
 .LI-profile-badge .LI-badge-container.vertical.light {
   min-height: 440px;
 }
+/** --------------------------------------------------------------
+ * header
+ */
+.outer-wrap-header {
+  flex-shrink: 0;
+}
+.site-logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+.site-logo-text {
+  font-family: "Times New Roman", Times, serif;
+  padding-left: 0.2em;
+}
+.rm-navbar {
+  font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
+  font-size: 1.5em;
+  line-height: 0;
+}
+.rm-menu-button {
+  font-size: 1.5em;
+}
+.rm-desktop li ul {
+  background-color: #fff;
+}
+.wrap-sidebar .block h4 {
+  border-top: 1px solid #ccc;
+  background-image: linear-gradient(to right, #fff, #ccc);
+}
+/** --------------------------------------------------------------
+ * Flash
+ */
+.region-flash img {
+  width: 100%;
+  height: 30em;
+}
+.outer-wrap-flash {
+  flex-shrink: 0;
+  height: 30em;
+  width: 100%;
+}
+/** --------------------------------------------------------------
+ * main
+ */
+.outer-wrap-main {
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+/** --------------------------------------------------------------
+ * Footer
+ */
+.outer-wrap-footer {
+  flex-shrink: 0;
+}
 /**
  * Base style to affect HTML elements on a general scale.
  */
@@ -6935,31 +6986,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   background-color: #b5dce1;
   border: 1px solid #6cbac4;
   color: #111;
-}
-.site-logo {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-}
-.site-logo-text {
-  font-family: "Times New Roman", Times, serif;
-  padding-left: 0.2em;
-}
-.rm-navbar {
-  text-align: center;
-  font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
-  font-size: 1.5em;
-  line-height: 0;
-}
-.rm-menu-button {
-  font-size: 1.5em;
-}
-.rm-desktop li ul {
-  background-color: #fff;
-}
-.wrap-sidebar .block h4 {
-  border-top: 1px solid #ccc;
-  background-image: linear-gradient(to right, #fff, #ccc);
 }
 /**
  * My settings.
