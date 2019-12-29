@@ -10,8 +10,12 @@
 DROP TABLE IF EXISTS User;
 CREATE TABLE User (
     "id" INTEGER PRIMARY KEY NOT NULL,
-    "acronym" TEXT UNIQUE NOT NULL,
-    "password" TEXT,
+    `email` TEXT UNIQUE NOT NULL,
+    `name` TEXT NOT NULL,
+    `password` TEXT NOT NULL,
+    `birthdate` TEXT NOT NULL,
+    `tel` TEXT,
+    `image` TEXT,
     "created" TIMESTAMP,
     "updated" DATETIME,
     "deleted" DATETIME,
