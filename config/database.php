@@ -13,7 +13,7 @@
  *
  */
 return [
-    "dsn"              => null,
+    "dsn" => "sqlite:" . ANAX_INSTALL_PATH . "/data/db.sqlite",
     "username"         => null,
     "password"         => null,
     "driver_options"   => null,
