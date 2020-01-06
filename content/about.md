@@ -16,7 +16,7 @@ views:
                 type: single
                 route: block/om-redovisa
 ---
-Om
+About
 =========================
 
 Detta innehåll är skrivet i markdown och du hittar innehållet i filen `content/om.md`.
