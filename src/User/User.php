@@ -71,7 +71,7 @@ class User extends ActiveRecordModel
      * @return String containing either just a URL or a complete image tag
      * @source https://gravatar.com/site/implement/images/php/
      */
-    function gravatar($email, $s = 80, $d = 'monsterid', $r = 'g', $img = false, $atts = array())
+    function gravatar($email, $s = 250, $d = 'monsterid', $r = 'g', $img = false, $atts = array())
     {
         $url = 'https://www.gravatar.com/avatar/';
         $url .= md5(strtolower(trim($email)));

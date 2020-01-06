@@ -54,12 +54,13 @@ class UserController implements ContainerInjectableInterface
      */
     public function indexActionGet() : object
     {
-        $page = $this->di->get("page");
+        $page = $this->di->get("page");;
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
 
-        $page->add("anax/v2/article/default", [
-            "content" => "An index page",
+        $page->add("user/users", [
+            "users" => $user->findAll(),
         ]);
-
         return $page->render([
             "title" => "A index page",
         ]);
