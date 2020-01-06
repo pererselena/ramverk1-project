@@ -6,6 +6,8 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Elpr\User\HTMLForm\UserLoginForm;
 use Elpr\User\HTMLForm\CreateUserForm;
+use Elpr\User\HTMLForm\UpdateForm;
+use Elpr\User\User;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -100,7 +102,7 @@ class UserController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
-    public function createAction() : object
+    public function registerAction() : object
     {
         $page = $this->di->get("page");
         $form = new CreateUserForm($this->di);
@@ -112,6 +114,103 @@ class UserController implements ContainerInjectableInterface
 
         return $page->render([
             "title" => "A create user page",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return bool
+     */
+    private function isLoggedIn()
+    {
+        $session = $this->di->get("session");
+
+        if ($session->get("userEmail")) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return bool
+     */
+    private function logoutAction()
+    {
+        if ($this->isLoggedIn()) {
+            $session = $this->di->get("session");
+            $session->delete("userEmail");
+        }
+        return $this->di->response->redirect("user/login");
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function profileAction(): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+
+        $page->add("user/profile", [
+            "user" => $user->findWhere("email = ?", $session->get("userEmail")),
+        ]);
+
+        return $page->render([
+            "title" => "Profile",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function updateAction(): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $email = $session->get("userEmail");
+        $form = new UpdateForm($this->di, $email);
+        $form->check();
+
+        $page->add("anax/v2/article/default", [
+            "content" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "Update profile",
         ]);
     }
 }
