@@ -4,7 +4,7 @@ namespace Elpr\User\HTMLForm;
 
 use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
-use Anax\User\User;
+use Elpr\User\User;
 
 /**
  * Example of FormModel implementation.
@@ -59,16 +59,7 @@ class UserLoginForm extends FormModel
     {
         // Get values from the submitted form
         $email       = $this->form->value("email");
-        $password      = $this->form->value("password");
-
-        // Try to login
-        // $db = $this->di->get("dbqb");
-        // $db->connect();
-        // $user = $db->select("password")
-        //     ->from("User")
-        //     ->where("email = ?")
-        //     ->execute([$email])
-        //     ->fetch();
+        $password    = $this->form->value("password");
 
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
@@ -83,5 +74,19 @@ class UserLoginForm extends FormModel
 
         $this->form->addOutput("User logged in.");
         return true;
+    }
+
+    /**
+     * Callback for success-button which should return true if it could
+     * carry out its work and false if something failed.
+     *
+     * @return boolean true if okey, false if something went wrong.
+     */
+    public function callbackSuccess()
+    {
+        $session = $this->di->get("session");
+
+        $session->set("userEmail", $this->form->value("email"));
+        $this->di->get("response")->redirect("user/profile")->send();
     }
 }
