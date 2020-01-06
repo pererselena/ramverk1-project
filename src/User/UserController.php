@@ -65,53 +65,53 @@ class UserController implements ContainerInjectableInterface
 
 
 
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return object as a response object
-    //  */
-    // public function loginAction() : object
-    // {
-    //     $page = $this->di->get("page");
-    //     $form = new UserLoginForm($this->di);
-    //     $form->check();
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function loginAction() : object
+    {
+        $page = $this->di->get("page");
+        $form = new UserLoginForm($this->di);
+        $form->check();
 
-    //     $page->add("anax/v2/article/default", [
-    //         "content" => $form->getHTML(),
-    //     ]);
+        $page->add("anax/v2/article/default", [
+            "content" => $form->getHTML(),
+        ]);
 
-    //     return $page->render([
-    //         "title" => "A login page",
-    //     ]);
-    // }
+        return $page->render([
+            "title" => "A login page",
+        ]);
+    }
 
 
 
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return object as a response object
-    //  */
-    // public function createAction() : object
-    // {
-    //     $page = $this->di->get("page");
-    //     $form = new CreateUserForm($this->di);
-    //     $form->check();
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function createAction() : object
+    {
+        $page = $this->di->get("page");
+        $form = new CreateUserForm($this->di);
+        $form->check();
 
-    //     $page->add("anax/v2/article/default", [
-    //         "content" => $form->getHTML(),
-    //     ]);
+        $page->add("anax/v2/article/default", [
+            "content" => $form->getHTML(),
+        ]);
 
-    //     return $page->render([
-    //         "title" => "A create user page",
-    //     ]);
-    // }
+        return $page->render([
+            "title" => "A create user page",
+        ]);
+    }
 }

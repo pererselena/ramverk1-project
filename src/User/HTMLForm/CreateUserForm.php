@@ -42,11 +42,6 @@ class CreateUserForm extends FormModel
                     "required" => "true"
                 ],
 
-                "image" => [
-                    "type"        => "text",
-                    "placeholder" => "Write link for your image",
-                ],
-
                 "password" => [
                     "type"        => "password",
                     "required" => "true"
@@ -99,7 +94,6 @@ class CreateUserForm extends FormModel
         $email         = $this->form->value("email");
         $tel           = $this->form->value("tel");
         $birthdate     = $this->form->value("birthdate");
-        $image         = $this->form->value("image");
         $password      = $this->form->value("password");
         $passwordAgain = $this->form->value("password-again");
 
@@ -123,7 +117,7 @@ class CreateUserForm extends FormModel
         $user->tel = $tel;
         $user->email = $email;
         $user->birthdate = $birthdate;
-        $user->image = $image;
+        $user->gravatar($email);
         $user->setPassword($password);
         $user->save();
 
