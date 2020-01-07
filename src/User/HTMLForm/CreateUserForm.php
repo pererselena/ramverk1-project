@@ -68,12 +68,14 @@ class CreateUserForm extends FormModel
 
                 "reset" => [
                     "type"      => "reset",
+                    "class" => "leftBtn"
                 ],
 
                 "submit" => [
                     "type" => "submit",
                     "value" => "Create User",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [$this, "callbackSubmit"],
+                    "class" => "primaryBtn"
                 ],
             ]
         );

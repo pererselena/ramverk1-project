@@ -41,7 +41,8 @@ class UserLoginForm extends FormModel
                 "submit" => [
                     "type" => "submit",
                     "value" => "Login",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [$this, "callbackSubmit"],
+                    "class" => "primaryBtn"
                 ],
             ]
         );

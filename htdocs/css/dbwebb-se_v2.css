@@ -5537,7 +5537,7 @@ input[readonly] {
 }
 /*
 label {
-  font-size: smaller;
+    font-size: smaller;
 }
 */
 .validation-failed {
@@ -5566,6 +5566,10 @@ textarea.nowrap {
 }
 fieldset {
   padding-top: 24px;
+  border: none;
+}
+legend {
+  font-size: 2em;
 }
 .span10 {
   width: 400px;
@@ -5575,6 +5579,39 @@ fieldset {
 }
 .span14 {
   width: 560px;
+}
+input,
+textarea {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 40em;
+  border: 1px solid #0ab4b4;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(20, 20, 20, 0.2);
+  color: white;
+  outline: none;
+}
+input[type=checkbox] {
+  width: 25px;
+}
+.primaryBtn,
+.leftBtn {
+  border: 1px solid #0ab4b4;
+  background: rgba(20, 20, 20, 0.6);
+  font-size: 18px;
+  color: white;
+  margin-top: 20px;
+  padding: 10px 50px;
+  width: 317px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.primaryBtn:hover,
+.leftBtn:hover {
+  background: rgba(20, 20, 20, 0.8);
 }
 /** --------------------------------------------------------------
  * Linkedin badges
@@ -5601,6 +5638,7 @@ html {
   background-color: #424242;
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;

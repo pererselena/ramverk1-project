@@ -147,7 +147,7 @@ class UserController implements ContainerInjectableInterface
      *
      * @return bool
      */
-    private function logoutAction()
+    public function logoutAction()
     {
         if ($this->isLoggedIn()) {
             $session = $this->di->get("session");

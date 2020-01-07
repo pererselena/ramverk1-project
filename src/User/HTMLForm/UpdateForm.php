@@ -69,7 +69,8 @@ class UpdateForm extends FormModel
                 "submit" => [
                     "type" => "submit",
                     "value" => "Save",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [$this, "callbackSubmit"],
+                    "class" => "primaryBtn"
                 ]
             ]
         );
