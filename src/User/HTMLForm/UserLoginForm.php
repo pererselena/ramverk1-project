@@ -23,7 +23,7 @@ class UserLoginForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "User Login"
+                "legend" => "Login"
             ],
             [
                 "email" => [

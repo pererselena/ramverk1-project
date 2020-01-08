@@ -6,8 +6,8 @@
 /** ==============================================================
  * Base
  */
-@colorAccentHeader1:  #3B440D;
-@colorAccentHeader2:  #9FB129;
+@colorAccentHeader1:  rgba(51, 8, 103, 0.445);
+@colorAccentHeader2:  rgba(48, 208, 208, 0.26);
 @colorAccentHeader3:  #d5e283;
 
 
@@ -40,7 +40,7 @@
 .site-logo-text {
     font-size: 42px;
     line-height: 1;
-    text-shadow: 2px -2px 2px #ccc;
+    //text-shadow: 2px -2px 2px #ccc;
     //padding-left: 8px;
 
     a {
@@ -123,6 +123,16 @@
     .footer {
         padding-left: 4px;
         padding-right: 4px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .site-logo-text {
+        font-size: 32px;
+    }
+
+    .rm-navbar {
+        font-size: 1.2em;
     }
 }
 

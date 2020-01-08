@@ -42,20 +42,24 @@ if ($session->has("userEmail")) {
         "text" => "Profile",
         "url" => "user/profile",
         "title" => "View users profile",
+        "class" => "nav-login nav-left",
     ], [
         "text" => "Logout",
         "url" => "user/logout",
         "title" => "Logout",
+        "class" => "nav-login",
     ]);
 } else {
     array_push($items, [
         "text" => "Register",
         "url" => "user/register",
         "title" => "Register user",
+        "class" => "nav-login nav-left",
     ], [
         "text" => "Login",
         "url" => "user/login",
         "title" => "Login",
+        "class" => "nav-login",
     ]);
 }
 

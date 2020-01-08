@@ -1,7 +1,8 @@
 /** --------------------------------------------------------------
  * header
  */
-@fontFamilyHeadings: @fontFamilyCambria;
+
+// @fontFamilySiteLogo: @fontFamilyAnton;
 
 
 
@@ -16,13 +17,18 @@
 }
 
 .site-logo-text {
-    font-family: @fontFamilySiteLogo;
     padding-left: 0.2em;
+    a {
+        font-family: @fontFamilySiteLogo;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 }
 
 .rm-navbar {
     //text-align: center;
-    font-family: @fontFamilyCambria;
     font-size: 1.5em;
     line-height: 0;
 }
@@ -38,4 +44,31 @@
 .wrap-sidebar .block h4 {
     border-top: 1px solid #ccc;
     background-image: linear-gradient(to right, #fff, #ccc);
+}
+
+@media screen and (min-width: 900px) {
+    .nav-login {
+        border: 1px solid rgba(10, 180, 180, 1);
+        background: rgba(20, 20, 20, .6);
+        font-size: 18px;
+        color: white;
+        //margin-top: 20px;
+        //padding: 10px 50px;
+        width: 115px;
+        cursor: pointer;
+        transition: .4s;
+        text-align: center;
+        &:hover {
+            background: rgba(20, 20, 20, .8);
+            //padding: 10px 80px;
+        }
+    }
+
+    .nav-left {
+            margin-left: 60px;
+        }
+
+    .rm-navbar {
+        float: right;
+    }
 }

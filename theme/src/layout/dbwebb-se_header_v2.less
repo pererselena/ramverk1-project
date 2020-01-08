@@ -27,32 +27,32 @@
 // @TODO .profile should be removed when using updated Anax layout.
 .site-logo-text,
 .region-header-col-1 {
-    #desinax-vgrid .column(5);
+    #desinax-vgrid .column(4);
 }
 
 .navbar2,
 .region-header-col-2 {
-    #desinax-vgrid .column(14);
+    #desinax-vgrid .column(16);
 }
 
 .profile,
 .region-header-col-3 {
-    #desinax-vgrid .column(5);
+    #desinax-vgrid .column(4);
 }
 
-@media screen and (max-width: 1300px) {
-    .navbar2,
-    .region-header-col-2 {
-        #desinax-vgrid .column(17);
-    }
+// @media screen and (max-width: 1300px) {
+//     .navbar2,
+//     .region-header-col-2 {
+//         #desinax-vgrid .column(17);
+//     }
 
-    .profile,
-    .region-header-col-3 {
-        #desinax-vgrid .column(2);
-    }
-}
+//     .profile,
+//     .region-header-col-3 {
+//         #desinax-vgrid .column(2);
+//     }
+// }
 
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 900px) {
     .site-logo-text,
     .region-header-col-1 {
         #desinax-vgrid .column(6);
@@ -60,11 +60,15 @@
 
     .navbar2,
     .region-header-col-2 {
-        #desinax-vgrid .column(16);
+        #desinax-vgrid .column(18);
+    }
+
+    .region-header-col-3 {
+        display: none;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
     .site-logo-text,
     .region-header-col-1 {
         #desinax-vgrid .column(16);

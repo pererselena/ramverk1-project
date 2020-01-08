@@ -191,13 +191,29 @@ img.responsive {
 /**
  * My settings.
  */
+
+ /**Customized font*/
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Notable|Orbitron|Saira&display=swap');
+
+
+
+@fontFamilyTextMeOne: 'Text Me One', sans-serif;
+@fontFamilyFjallaOne: 'Fjalla One', sans-serif;
+@fontFamilyOrbitron: 'Orbitron', sans-serif;
+@fontFamilyJuliusSansOne: 'Julius Sans One', sans-serif;
+@fontFamilySaira: 'Saira', sans-serif;
+@fontFamilyNotable: 'Notable', sans-serif;
+
+
 @bgColorHtml: #424242;
 @bgColorBody: #fff;
 @colorBody:   #111;
 
-@fontFamilyHeadings: @fontFamilyCambria;
-@fontFamilyBody:     @fontFamilyVerdana;
+@fontFamilyHeadings: @fontFamilyJuliusSansOne;
+@fontFamilyBody:     @fontFamilySaira;
 @fontFamilyCode:     @fontFamilyCourier;
+@navbarFontFamily: @fontFamilyTimesNewRoman;
+@fontFamilySiteLogo: @fontFamilyNotable;
 
 @colorH1BorderBottom: #666; // Add to h4 also
 @colorH2BorderBottom: #ccc;
@@ -212,4 +228,4 @@ img.responsive {
 @columns:       24;
 @gridType:      "float"; // "flex"
 
-@navbarFontFamily: @fontFamilyTimesNewRoman;
+

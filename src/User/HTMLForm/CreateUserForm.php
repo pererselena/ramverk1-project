@@ -22,7 +22,7 @@ class CreateUserForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Create user",
+                "legend" => "Register",
             ],
             [
                 "name" => [

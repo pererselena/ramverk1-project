@@ -5590,12 +5590,15 @@ textarea {
   border-top: none;
   border-left: none;
   border-right: none;
-  background: rgba(20, 20, 20, 0.2);
+  background: #1414144a;
   color: white;
   outline: none;
 }
 input[type=checkbox] {
   width: 25px;
+}
+input:placeholder {
+  color: white;
 }
 .primaryBtn,
 .leftBtn {
@@ -5635,7 +5638,6 @@ input[type=checkbox] {
 }
 html {
   overflow-y: scroll;
-  background-color: #424242;
   height: 100%;
   width: 100%;
   scroll-behavior: smooth;
@@ -6010,11 +6012,11 @@ select {
 }
 .profile .ucp a,
 .profile .login a {
-  color: #3B440D;
+  color: rgba(51, 8, 103, 0.445);
 }
 .profile .ucp a:hover,
 .profile .login a:hover {
-  color: #9FB129;
+  color: rgba(48, 208, 208, 0.26);
 }
 .profile .ucp .icon,
 .profile .login .icon {
@@ -6294,7 +6296,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   text-align: center;
 }
 .rm-navbar-top.rm-navbar {
-  font-family: "Times New Roman", Times, serif;
   line-height: 1;
   font-size: 22px;
   top: 10px;
@@ -6313,8 +6314,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 }
 .rm-navbar-top .rm-desktop li.selected a,
 .rm-navbar-top .rm-desktop a:hover {
-  color: #3B440D;
-  text-shadow: 0px 0px 1px #9FB129;
+  color: rgba(51, 8, 103, 0.445);
+  text-shadow: 0px 0px 1px rgba(48, 208, 208, 0.26);
   text-decoration: underline;
 }
 .rm-navbar-top .rm-desktop li.selected a {
@@ -6616,7 +6617,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .region-header-col-1 {
   display: inline;
   float: left;
-  width: 19.79166667%;
+  width: 15.625%;
   margin-left: 0.52083333%;
   margin-right: 0.52083333%;
 }
@@ -6624,7 +6625,7 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .region-header-col-2 {
   display: inline;
   float: left;
-  width: 57.29166667%;
+  width: 65.625%;
   margin-left: 0.52083333%;
   margin-right: 0.52083333%;
 }
@@ -6632,29 +6633,11 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .region-header-col-3 {
   display: inline;
   float: left;
-  width: 19.79166667%;
+  width: 15.625%;
   margin-left: 0.52083333%;
   margin-right: 0.52083333%;
 }
-@media screen and (max-width: 1300px) {
-  .navbar2,
-  .region-header-col-2 {
-    display: inline;
-    float: left;
-    width: 69.79166667%;
-    margin-left: 0.52083333%;
-    margin-right: 0.52083333%;
-  }
-  .profile,
-  .region-header-col-3 {
-    display: inline;
-    float: left;
-    width: 7.29166667%;
-    margin-left: 0.52083333%;
-    margin-right: 0.52083333%;
-  }
-}
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 900px) {
   .site-logo-text,
   .region-header-col-1 {
     display: inline;
@@ -6667,12 +6650,15 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   .region-header-col-2 {
     display: inline;
     float: left;
-    width: 65.625%;
+    width: 73.95833333%;
     margin-left: 0.52083333%;
     margin-right: 0.52083333%;
   }
+  .region-header-col-3 {
+    display: none;
+  }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .site-logo-text,
   .region-header-col-1 {
     display: inline;
@@ -6700,7 +6686,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .site-logo-text {
   font-size: 42px;
   line-height: 1;
-  text-shadow: 2px -2px 2px #ccc;
 }
 .site-logo-text a {
   color: #333;
@@ -6708,8 +6693,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   transition: all 0.2s linear;
 }
 .site-logo-text a:hover {
-  color: #3B440D;
-  text-shadow: 2px -2px 2px #9FB129;
+  color: rgba(51, 8, 103, 0.445);
+  text-shadow: 2px -2px 2px rgba(48, 208, 208, 0.26);
 }
 .site-logo-text-icon img {
   vertical-align: bottom;
@@ -6764,6 +6749,14 @@ a.rm-button.rm-clicked .rm-button-face-2 {
   .footer {
     padding-left: 4px;
     padding-right: 4px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .site-logo-text {
+    font-size: 32px;
+  }
+  .rm-navbar {
+    font-size: 1.2em;
   }
 }
 .outer-wrap-after-main {
@@ -6837,8 +6830,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 .sidebar .block h4 a:hover,
 .columns-above .block h4 a:hover,
 .columns-below .block h4 a:hover {
-  color: #3B440D;
-  text-shadow: 0px 0px 1px #9FB129;
+  color: rgba(51, 8, 103, 0.445);
+  text-shadow: 0px 0px 1px rgba(48, 208, 208, 0.26);
   text-decoration: underline;
 }
 /** ==============================================================
