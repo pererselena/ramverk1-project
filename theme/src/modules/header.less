@@ -21,7 +21,7 @@
     a {
         font-family: @fontFamilySiteLogo;
         text-transform: uppercase;
-        background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+        background: linear-gradient(to left, #61c69d 0%, #2d72bc 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -29,7 +29,7 @@
 
 .rm-navbar {
     //text-align: center;
-    font-size: 1.5em;
+    font-size: 1.1em;
     line-height: 0;
 }
 
@@ -46,12 +46,16 @@
     background-image: linear-gradient(to right, #fff, #ccc);
 }
 
+.region-header-col-1,
+.region-header-col-2,
+.region-header-col-3 {
+    margin-top: 0.5em;
+}
+
 @media screen and (min-width: 900px) {
     .nav-login {
-        border: 1px solid rgba(10, 180, 180, 1);
-        background: rgba(20, 20, 20, .6);
+        border: 3px solid rgba(51, 51, 51, 0.883);
         font-size: 18px;
-        color: white;
         //margin-top: 20px;
         //padding: 10px 50px;
         width: 115px;
@@ -59,8 +63,12 @@
         transition: .4s;
         text-align: center;
         &:hover {
-            background: rgba(20, 20, 20, .8);
+            background: rgba(51, 51, 51, 0.883);
             //padding: 10px 80px;
+            color: white;
+        }
+        & a:hover {
+            text-decoration: none;
         }
     }
 

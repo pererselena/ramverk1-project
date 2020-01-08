@@ -5640,12 +5640,12 @@ input:placeholder {
 .site-logo-text a {
   font-family: 'Notable', sans-serif;
   text-transform: uppercase;
-  background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+  background: linear-gradient(to left, #61c69d 0%, #2d72bc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .rm-navbar {
-  font-size: 1.5em;
+  font-size: 1.1em;
   line-height: 0;
 }
 .rm-menu-button {
@@ -5658,19 +5658,31 @@ input:placeholder {
   border-top: 1px solid #ccc;
   background-image: linear-gradient(to right, #fff, #ccc);
 }
+.region-header-col-1,
+.region-header-col-2,
+.region-header-col-3 {
+  margin-top: 0.5em;
+}
+.rm-desktop li a:hover {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2;
+}
 @media screen and (min-width: 900px) {
   .nav-login {
-    border: 1px solid #0ab4b4;
-    background: rgba(20, 20, 20, 0.6);
+    border: 3px solid rgba(51, 51, 51, 0.883);
     font-size: 18px;
-    color: white;
     width: 115px;
     cursor: pointer;
     transition: 0.4s;
     text-align: center;
   }
   .nav-login:hover {
-    background: rgba(20, 20, 20, 0.8);
+    background: rgba(51, 51, 51, 0.883);
+    color: white;
+  }
+  .nav-login a:hover {
+    text-decoration: none;
   }
   .nav-left {
     margin-left: 60px;
@@ -6844,9 +6856,6 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 @media screen and (max-width: 1200px) {
   .site-logo-text {
     font-size: 32px;
-  }
-  .rm-navbar {
-    font-size: 1.2em;
   }
 }
 .outer-wrap-after-main {
