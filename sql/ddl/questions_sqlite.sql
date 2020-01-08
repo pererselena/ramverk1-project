@@ -14,6 +14,7 @@ CREATE TABLE Questions (
     "tid" INTEGER NOT NULL,
     `score` INTEGER,
     `tag` TEXT NOT NULL,
+    `title` TEXT NOT NULL,
     `text` TEXT NOT NULL,
     "created" TIMESTAMP,
     "updated" DATETIME,
