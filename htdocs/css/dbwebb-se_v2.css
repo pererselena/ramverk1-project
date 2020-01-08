@@ -6595,6 +6595,12 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 /** ==============================================================
  * Base
  */
+.region-flash,
+.region-footer {
+  margin-left: 0;
+  margin-right: 0;
+  float: none;
+}
 /** ==============================================================
  * Header 
  */
