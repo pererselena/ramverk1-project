@@ -27,6 +27,7 @@ class User extends ActiveRecordModel
     public $email;
     public $birthdate;
     public $image;
+    public $score;
     public $created;
     public $updated;
     public $deleted;
@@ -57,6 +58,21 @@ class User extends ActiveRecordModel
     {
         $this->find("email", $email);
         return password_verify($password, $this->password);
+    }
+
+    /**
+     * Update score.
+     *
+     * @param integer $userId.
+     * @param integer $score.
+     *
+     * @return void
+     */
+    public function updateScore($userId, $score)
+    {
+        $this->findById($userId);
+        $this->score += $score;
+
     }
 
     /**

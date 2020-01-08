@@ -119,9 +119,14 @@ class CreateUserForm extends FormModel
         $user->tel = $tel;
         $user->email = $email;
         $user->birthdate = $birthdate;
+        $user->score = 0;
         $user->gravatar($email);
         $user->setPassword($password);
         $user->save();
+
+        $session = $this->di->get("session");
+        $session->set("userEmail", $user->email);
+        $session->set("userId", $user->id);
 
         $this->form->addOutput("User was created.");
         return true;
@@ -135,9 +140,6 @@ class CreateUserForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $session = $this->di->get("session");
-
-        $session->set("userEmail", $this->form->value("email"));
         $this->di->get("response")->redirect("user/profile")->send();
     }
 }

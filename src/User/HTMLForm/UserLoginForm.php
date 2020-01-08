@@ -74,6 +74,9 @@ class UserLoginForm extends FormModel
         }
 
         $this->form->addOutput("User logged in.");
+        $session = $this->di->get("session");
+        $session->set("userEmail", $user->email);
+        $session->set("userId", $user->id);
         return true;
     }
 
@@ -85,9 +88,6 @@ class UserLoginForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $session = $this->di->get("session");
-
-        $session->set("userEmail", $this->form->value("email"));
         $this->di->get("response")->redirect("user/profile")->send();
     }
 }
