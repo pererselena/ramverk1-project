@@ -20,11 +20,11 @@ class CreateQuestionForm extends FormModel
     {
         parent::__construct($di);
         $question = new Question;
-        $allTags = $question->getAllTags();
+        $allTags = $question->getAllTags($di);
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Register",
+                "legend" => "Create question",
             ],
             [
                 "title" => [
@@ -38,7 +38,7 @@ class CreateQuestionForm extends FormModel
                 ],
 
                 "tags" => [
-                    "type" => "select",
+                    "type" => "select-multiple",
                     "label" => "Select one or more tags",
 
                     "options" => $allTags
@@ -47,7 +47,7 @@ class CreateQuestionForm extends FormModel
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Create User",
+                    "value" => "Create",
                     "callback" => [$this, "callbackSubmit"],
                     "class" => "primaryBtn"
                 ],
@@ -75,7 +75,6 @@ class CreateQuestionForm extends FormModel
         $question->setDb($this->di->get("dbqb"));
         $question->title = $title;
         $question->text = $text;
-        $question->tag = $tag;
         $question->created = time();
         $question->uid = $session->get("userId");
         $question->score = 0;

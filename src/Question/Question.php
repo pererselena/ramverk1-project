@@ -24,8 +24,6 @@ class Question extends ActiveRecordModel
      */
     public $id;
     public $uid;
-    public $tid;
-    public $tag;
     public $title;
     public $text;
     public $score;
@@ -66,10 +64,10 @@ class Question extends ActiveRecordModel
      *
      * @return array
      */
-    public function getAllTags()
+    public function getAllTags($di)
     {
         $tag = new Tag();
-        $tag->setDb($this->di->get("dbqb"));
+        $tag->setDb($di->get("dbqb"));
         $tags = $tag->findAll();
         $allTags = array();
         foreach ($tags as $key => $value) {
