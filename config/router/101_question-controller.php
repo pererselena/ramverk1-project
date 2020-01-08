@@ -7,7 +7,7 @@ return [
     "routes" => [
         [
             "info" => "Question controller.",
-            "mount" => "question",
+            "mount" => "questions",
             "handler" => "\Elpr\Question\QuestionController",
         ],
     ]
