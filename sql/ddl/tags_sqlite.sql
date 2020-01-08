@@ -24,3 +24,14 @@ CREATE TABLE TagToQuestion (
     FOREIGN KEY("qid") REFERENCES Questions("id"),
     FOREIGN KEY("tid") REFERENCES Tags("id")
 );
+
+INSERT INTO Tags VALUES
+    ("1", "Europe"),
+    ("2", "Asia"),
+    ("3", "Restaurants"),
+    ("4", "Housing"),
+    ("5", "USA"),
+    ("6", "Entertainment"),
+    ("7", "To see")
+;
+

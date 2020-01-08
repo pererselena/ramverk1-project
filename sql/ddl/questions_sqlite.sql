@@ -11,17 +11,14 @@ DROP TABLE IF EXISTS Questions;
 CREATE TABLE Questions (
     "id" INTEGER PRIMARY KEY NOT NULL,
     "uid" INTEGER NOT NULL,
-    "tid" INTEGER NOT NULL,
     `score` INTEGER,
-    `tag` TEXT NOT NULL,
     `title` TEXT NOT NULL,
     `text` TEXT NOT NULL,
     "created" TIMESTAMP,
     "updated" DATETIME,
     "deleted" DATETIME,
     "active" DATETIME,
-    FOREIGN KEY("uid") REFERENCES User("id"),
-    FOREIGN KEY("tid") REFERENCES Tags("id")
+    FOREIGN KEY("uid") REFERENCES User("id")
 );
 
 --
