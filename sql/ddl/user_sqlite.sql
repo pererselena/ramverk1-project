@@ -16,6 +16,7 @@ CREATE TABLE User (
     `birthdate` TEXT NOT NULL,
     `tel` TEXT,
     `image` TEXT,
+    `score` INTEGER,
     "created" TIMESTAMP,
     "updated" DATETIME,
     "deleted" DATETIME,
