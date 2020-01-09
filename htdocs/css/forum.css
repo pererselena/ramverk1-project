@@ -5713,6 +5713,33 @@ h2 {
   font-family: 'Julius Sans One', sans-serif;
 }
 /** --------------------------------------------------------------
+ * user
+ */
+/** 
+ * Style for users page
+ */
+.users {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.user {
+  text-align: center;
+}
+.user-img img {
+  border-radius: 50%;
+  width: 100px;
+}
+.user-small h3,
+.user-small p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.user-small h3 {
+  font-size: 1.2em;
+  color: #2e73b5;
+}
+/** --------------------------------------------------------------
  * Footer
  */
 .outer-wrap-footer {

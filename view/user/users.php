@@ -15,16 +15,16 @@ namespace Anax\View;
     return;
 endif;
 ?>
-<?php foreach ($users as $user) : ?>
-    <div class="users">
+<div class="users">
+    <?php foreach ($users as $user) : ?>
         <div class="user">
             <div class="user-img">
                 <img src="<?= $user->image; ?>" alt="User">
             </div>
             <div class="user-small">
                 <h3><?= $user->name; ?></h3>
+                <p>Score: <?= $user->score; ?></p>
             </div>
         </div>
-    </div>
-
-<?php endforeach; ?>
+    <?php endforeach; ?>
+</div>
