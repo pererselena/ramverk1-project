@@ -5747,11 +5747,10 @@ h2 {
   text-decoration: none;
   border: 3px solid rgba(51, 51, 51, 0.883);
   font-size: 18px;
-  width: 15em;
   cursor: pointer;
   transition: 0.4s;
   text-align: center;
-  padding: 10px;
+  padding: 7px 50px;
 }
 .profileBtn a:visited {
   color: #333;
@@ -5759,6 +5758,18 @@ h2 {
 .profileBtn a:hover {
   color: white;
   background: rgba(51, 51, 51, 0.883);
+}
+.profile-user {
+  display: flex;
+  margin-bottom: 96px;
+  flex-wrap: wrap;
+}
+.userinfo h3 {
+  font-size: 2.5em;
+  color: #2e73b5;
+}
+.profile-img {
+  margin-right: 3em;
 }
 /** --------------------------------------------------------------
  * Footer
