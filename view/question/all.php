@@ -20,6 +20,14 @@ endif;
         <div class="question">
             <h3><?= $question->title; ?></h3>
             <p><?= $question->text; ?></p>
+            <p><?= $question->user->name; ?></p>
+            <?php if ($question->tags) : ?>
+                <?php foreach ($question->tags as $tag) : ?>
+                    <p><?= $tag->tag; ?></p>
+                <?php endforeach; ?>
+            <?php
+            endif;
+            ?>
         </div>
     </div>
 <?php endforeach; ?>

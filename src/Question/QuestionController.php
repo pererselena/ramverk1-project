@@ -8,6 +8,9 @@ use Elpr\Question\HTMLForm\QuestionLoginForm;
 use Elpr\Question\HTMLForm\CreateQuestionForm;
 use Elpr\Question\HTMLForm\UpdateForm;
 use Elpr\Question\Question;
+use Elpr\Question\TagToQuestion;
+use Elpr\Tag\Tag;
+use Elpr\User\User;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -57,9 +60,31 @@ class QuestionController implements ContainerInjectableInterface
         $page = $this->di->get("page");;
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
+        $questions = $question->findAll();
+        $tagToQuestion = new TagToQuestion();
+        $tagToQuestion->setDb($this->di->get("dbqb"));
+        
+        
+        foreach ($questions as $key => $quest) {
+            $quest->tags = [];
+            $tags = $tagToQuestion->findAllWhere("qid = ?", $quest->id);
+            if ($tags) {
+                $tagArr = array();
+                foreach ($tags as $key => $item) {
+                    $tag = new Tag();
+                    $tag->setDb($this->di->get("dbqb"));
+                    array_push($tagArr, $tag->findWhere("id = ?", $item->tid));
+                }
+                $quest->tags = $tagArr;
+            }
+
+            $user = new User();
+            $user->setDb($this->di->get("dbqb"));
+            $quest->user = $user->findById($quest->uid);
+        }
 
         $page->add("question/all", [
-            "questions" => $question->findAll(),
+            "questions" => $questions,
         ]);
         return $page->render([
             "title" => "A index page",

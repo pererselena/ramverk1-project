@@ -5,6 +5,7 @@ namespace Elpr\Question\HTMLForm;
 use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
 use Elpr\Question\Question;
+use Elpr\Question\TagToQuestion;
 
 /**
  * Example of FormModel implementation.
@@ -66,9 +67,9 @@ class CreateQuestionForm extends FormModel
     public function callbackSubmit()
     {
         // Get values from the submitted form
-        $title          = $this->form->value("title");
-        $text         = $this->form->value("text");
-        $tag           = $this->form->value("tags");
+        $title = $this->form->value("title");
+        $text = $this->form->value("text");
+        $tag = $this->form->value("tags");
         $session = $this->di->get("session");
 
         $question = new Question();
@@ -79,6 +80,14 @@ class CreateQuestionForm extends FormModel
         $question->uid = $session->get("userId");
         $question->score = 0;
         $question->save();
+
+        foreach ($tag as $key => $value) {
+            $tagToQuestion = new TagToQuestion();
+            $tagToQuestion->setDb($this->di->get("dbqb"));
+            $tagToQuestion->qid = $question->id;
+            $tagToQuestion->tid = $value;
+            $tagToQuestion->save();
+        }
 
         $this->form->addOutput("question was created.");
         return true;
