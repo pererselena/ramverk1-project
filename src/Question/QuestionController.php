@@ -6,7 +6,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Elpr\Question\HTMLForm\QuestionLoginForm;
 use Elpr\Question\HTMLForm\CreateQuestionForm;
-use Elpr\Question\HTMLForm\UpdateForm;
+use Elpr\Question\HTMLForm\UpdateQuestionForm;
 use Elpr\Question\Question;
 use Elpr\Question\TagToQuestion;
 use Elpr\Tag\Tag;
@@ -182,6 +182,49 @@ class QuestionController implements ContainerInjectableInterface
         ]);
     }
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function updateAction(int $id): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $quest = $question->findById($id);
+        if ($quest->uid == $userId) {
+            $form = new UpdateQuestionForm($this->di, $id);
+            $form->check();
+
+            $page->add("anax/v2/article/default", [
+                "content" => $form->getHTML(),
+            ]);
+
+            return $page->render([
+                "title" => "Update question",
+            ]);
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are not the owner of this question!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
 
     // /**
     //  * Description.
@@ -249,34 +292,5 @@ class QuestionController implements ContainerInjectableInterface
     //     ]);
     // }
 
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return object as a response object
-    //  */
-    // public function updateAction(): object
-    // {
-    //     if (!$this->isLoggedIn()) {
-    //         return $this->di->response->redirect("user/login");
-    //     }
-    //     $page = $this->di->get("page");
-    //     $user = new User();
-    //     $user->setDb($this->di->get("dbqb"));
-    //     $session = $this->di->get("session");
-    //     $email = $session->get("userEmail");
-    //     $form = new UpdateForm($this->di, $email);
-    //     $form->check();
-
-    //     $page->add("anax/v2/article/default", [
-    //         "content" => $form->getHTML(),
-    //     ]);
-
-    //     return $page->render([
-    //         "title" => "Update profile",
-    //     ]);
-    // }
+    
 }

@@ -17,7 +17,7 @@ namespace Anax\View;
 endif;
 ?>
 <div class="profileBtn">
-    <a href="questions/update/<?= $question->id ?>">Edit question</a>
+    <a href="../update/<?= $question->id ?>">Edit question</a>
 </div>
 <div class="question">
     <div class="question">
