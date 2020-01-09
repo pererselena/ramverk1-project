@@ -21,7 +21,9 @@ endif;
 <?php foreach ($questions as $question) : ?>
     <div class="questions">
         <div class="question">
-            <h3><?= $question->title; ?></h3>
+            <a href="questions/question/<?= $question->id ?>">
+                <h3><?= $question->title; ?></h3>
+            </a>
             <p><?= $question->text; ?></p>
             <p><?= $question->user->name; ?></p>
             <?php if ($question->tags) : ?>

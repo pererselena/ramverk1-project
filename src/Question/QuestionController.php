@@ -140,6 +140,49 @@ class QuestionController implements ContainerInjectableInterface
         ]);
     }
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function questionActionGet(int $id): object
+    {
+        $page = $this->di->get("page");;
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $quest = $question->findById($id);
+        $tagToQuestion = new TagToQuestion();
+        $tagToQuestion->setDb($this->di->get("dbqb"));
+
+        $quest->tags = [];
+        $tags = $tagToQuestion->findAllWhere("qid = ?", $quest->id);
+        if ($tags) {
+            $tagArr = array();
+            foreach ($tags as $key => $item) {
+                $tag = new Tag();
+                $tag->setDb($this->di->get("dbqb"));
+                array_push($tagArr, $tag->findWhere("id = ?", $item->tid));
+            }
+            $quest->tags = $tagArr;
+        }
+
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $quest->user = $user->findById($quest->uid);
+
+        $page->add("question/question", [
+            "question" => $quest,
+        ]);
+        return $page->render([
+            "title" => "A index page",
+        ]);
+    }
+
+
     // /**
     //  * Description.
     //  *
