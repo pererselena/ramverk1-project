@@ -9,6 +9,9 @@ namespace Anax\View;
 
 
 ?><h2>Questions</h2>
+<div class="profileBtn">
+    <a href="questions/create">Create question</a>
+</div>
 <?php if (!$questions) : ?>
     <p>There are no questions to show.</p>
 <?php

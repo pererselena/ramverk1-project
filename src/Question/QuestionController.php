@@ -91,7 +91,25 @@ class QuestionController implements ContainerInjectableInterface
         ]);
     }
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return bool
+     */
+    private function isLoggedIn()
+    {
+        $session = $this->di->get("session");
 
+        if ($session->get("userEmail")) {
+            return true;
+        }
+
+        return false;
+    }
 
 
 
@@ -106,6 +124,9 @@ class QuestionController implements ContainerInjectableInterface
      */
     public function createAction(): object
     {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
         $page = $this->di->get("page");
         $form = new CreateQuestionForm($this->di);
         $form->check();
