@@ -16,8 +16,8 @@ namespace Anax\View;
 endif;
 ?>
 <?php foreach ($questions as $question) : ?>
-    <div class="users">
-        <div class="user-small">
+    <div class="questions">
+        <div class="question">
             <h3><?= $question->title; ?></h3>
             <p><?= $question->text; ?></p>
         </div>
