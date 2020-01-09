@@ -5739,6 +5739,27 @@ h2 {
   font-size: 1.2em;
   color: #2e73b5;
 }
+/** 
+ * Style for profile page
+ */
+.profileBtn a {
+  color: #333;
+  text-decoration: none;
+  border: 3px solid rgba(51, 51, 51, 0.883);
+  font-size: 18px;
+  width: 15em;
+  cursor: pointer;
+  transition: 0.4s;
+  text-align: center;
+  padding: 10px;
+}
+.profileBtn a:visited {
+  color: #333;
+}
+.profileBtn a:hover {
+  color: white;
+  background: rgba(51, 51, 51, 0.883);
+}
 /** --------------------------------------------------------------
  * Footer
  */
@@ -5772,7 +5793,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: #111;
+  color: #333;
   background-color: #fff;
   font: 16px/1.5 'Saira', sans-serif;
   height: 100%;

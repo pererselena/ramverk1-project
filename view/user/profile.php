@@ -9,7 +9,7 @@ namespace Anax\View;
 
 
 ?><h2>User profile</h2>
-<div class="profile">
+<div class="profile-user">
     <div class="profile-img">
         <img src="<?= $user->image; ?>" alt="User">
     </div>
@@ -20,6 +20,6 @@ namespace Anax\View;
         <p><?= $user->birthdate; ?></p>
     </div>
 </div>
-<div>
-    <a class="profileBtn" href="update">Update profile</a>
+<div class="profileBtn">
+    <a href="update">Update profile</a>
 </div>
