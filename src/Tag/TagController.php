@@ -69,4 +69,52 @@ class TagController implements ContainerInjectableInterface
             "title" => "A index page",
         ]);
     }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function tagActionGet(int $id): object
+    {
+        $page = $this->di->get("page");;
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $tagToQuestion = new TagToQuestion();
+        $tagToQuestion->setDb($this->di->get("dbqb"));
+        $qids = $tagToQuestion->findAllWhere("tid = ?", $id);
+        $questions = array();
+        foreach ($qids as $qid) {
+            array_push($questions, $question->findById($qid->qid));
+        }
+
+        foreach ($questions as $key => $quest) {
+            $quest->tags = [];
+            $tags = $tagToQuestion->findAllWhere("qid = ?", $quest->id);
+            if ($tags) {
+                $tagArr = array();
+                foreach ($tags as $key => $item) {
+                    $tag = new Tag();
+                    $tag->setDb($this->di->get("dbqb"));
+                    array_push($tagArr, $tag->findWhere("id = ?", $item->tid));
+                }
+                $quest->tags = $tagArr;
+            }
+
+            $user = new User();
+            $user->setDb($this->di->get("dbqb"));
+            $quest->user = $user->findById($quest->uid);
+        }
+
+        $page->add("question/bytag", [
+            "questions" => $questions,
+        ]);
+        return $page->render([
+            "title" => "A index page",
+        ]);
+    }
 }

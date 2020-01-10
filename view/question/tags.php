@@ -16,9 +16,12 @@ namespace Anax\View;
     return;
 endif;
 ?>
-    <div class="tags">
-            <?php foreach ($tags as $tag) : ?>
-                <p>#<?= $tag->tag; ?></p>
-            <?php endforeach; ?>
-    </div>
+<div class="tags">
+
+    <?php foreach ($tags as $tag) : ?>
+        <a href="tags/tag/<?= $tag->id ?>">
+            <p>#<?= $tag->tag; ?></p>
+        </a>
+    <?php endforeach; ?>
+</div>
 </div>

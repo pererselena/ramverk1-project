@@ -20,7 +20,7 @@ endif;
 ?>
 <?php foreach ($questions as $question) : ?>
     <div class="question-container">
-        <a href="questions/question/<?= $question->id ?>">
+        <a href="../../questions/question/<?= $question->id ?>">
             <h3><?= $question->title; ?></h3>
         </a>
         <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
@@ -33,7 +33,7 @@ endif;
             <p><?= $question->text; ?></p>
 
             <div class="user user-right">
-                <a href="user/userprofile/<?= $question->user->id ?>">
+                <a href="../../user/userprofile/<?= $question->user->id ?>">
                     <div class="user-img">
                         <img src="<?= $question->user->image; ?>" alt="<?= $question->user->name; ?>">
                     </div>
@@ -47,7 +47,7 @@ endif;
         <div class="tags">
             <?php if ($question->tags) : ?>
                 <?php foreach ($question->tags as $tag) : ?>
-                    <a href="tags/tag/<?= $tag->id ?>">
+                    <a href="<?= $tag->id ?>">
                         <p>#<?= $tag->tag; ?></p>
                     </a>
                 <?php endforeach; ?>

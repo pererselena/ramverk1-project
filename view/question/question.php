@@ -45,7 +45,9 @@ endif;
     <div class="tags">
         <?php if ($question->tags) : ?>
             <?php foreach ($question->tags as $tag) : ?>
-                <p>#<?= $tag->tag; ?></p>
+                <a href="../../tags/tag/<?= $tag->id ?>">
+                    <p>#<?= $tag->tag; ?></p>
+                </a>
             <?php endforeach; ?>
         <?php
         endif;
