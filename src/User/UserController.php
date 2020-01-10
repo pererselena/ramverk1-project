@@ -193,6 +193,30 @@ class UserController implements ContainerInjectableInterface
      *
      * @return object as a response object
      */
+    public function userprofileActionGet(int $id): object
+    {
+        $page = $this->di->get("page");;
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $profile = $user->findById($id);
+
+        $page->add("user/profile-id", [
+            "profile" => $profile,
+        ]);
+        return $page->render([
+            "title" => "A index page",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
     public function updateAction(): object
     {
         if (!$this->isLoggedIn()) {

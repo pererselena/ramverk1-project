@@ -24,8 +24,19 @@ endif;
             <a href="questions/question/<?= $question->id ?>">
                 <h3><?= $question->title; ?></h3>
             </a>
-            <p><?= $question->text; ?></p>
-            <p><?= $question->user->name; ?></p>
+            <div>
+                <p><?= $question->text; ?></p>
+                <section class="user user-right">
+                    <a href="user/userprofile/<?= $question->user->id ?>">
+                        <div class="user-img">
+                            <img src="<?= $question->user->image; ?>" alt="<?= $question->user->name; ?>">
+                        </div>
+                        <div class="user-small">
+                            <h3><?= $question->user->name; ?></h3>
+                        </div>
+                    </a>
+                </section>
+            </div>
             <?php if ($question->tags) : ?>
                 <?php foreach ($question->tags as $tag) : ?>
                     <p><?= $tag->tag; ?></p>
