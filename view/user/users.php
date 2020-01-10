@@ -17,14 +17,16 @@ endif;
 ?>
 <div class="users">
     <?php foreach ($users as $user) : ?>
-        <div class="user">
-            <div class="user-img">
-                <img src="<?= $user->image; ?>" alt="User">
+        <a href="user/userprofile/<?= $user->id ?>">
+            <div class="user">
+                <div class="user-img">
+                    <img src="<?= $user->image; ?>" alt="User">
+                </div>
+                <div class="user-small">
+                    <h3><?= $user->name; ?></h3>
+                    <p>Score: <?= $user->score; ?></p>
+                </div>
             </div>
-            <div class="user-small">
-                <h3><?= $user->name; ?></h3>
-                <p>Score: <?= $user->score; ?></p>
-            </div>
-        </div>
+        </a>
     <?php endforeach; ?>
 </div>
