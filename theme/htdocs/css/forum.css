@@ -5726,6 +5726,16 @@ h2 {
 .user {
   text-align: center;
 }
+.user a {
+  text-decoration: none;
+  color: #333;
+}
+.user a:visited {
+  color: #333;
+}
+.user a:hover {
+  text-decoration: underline;
+}
 .user-img img {
   border-radius: 50%;
   width: 100px;

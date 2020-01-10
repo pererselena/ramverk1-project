@@ -19,31 +19,31 @@ namespace Anax\View;
 endif;
 ?>
 <?php foreach ($questions as $question) : ?>
-    <div class="questions">
+    <div class="question">
+        <a href="questions/question/<?= $question->id ?>">
+            <h3><?= $question->title; ?></h3>
+        </a>
         <div class="question">
-            <a href="questions/question/<?= $question->id ?>">
-                <h3><?= $question->title; ?></h3>
-            </a>
-            <div>
-                <p><?= $question->text; ?></p>
-                <section class="user user-right">
-                    <a href="user/userprofile/<?= $question->user->id ?>">
-                        <div class="user-img">
-                            <img src="<?= $question->user->image; ?>" alt="<?= $question->user->name; ?>">
-                        </div>
-                        <div class="user-small">
-                            <h3><?= $question->user->name; ?></h3>
-                        </div>
-                    </a>
-                </section>
-            </div>
-            <?php if ($question->tags) : ?>
-                <?php foreach ($question->tags as $tag) : ?>
-                    <p><?= $tag->tag; ?></p>
-                <?php endforeach; ?>
-            <?php
-            endif;
-            ?>
+            <p><?= $question->text; ?></p>
+            <section class="user user-right">
+                <p>Created <?= date('Y/m/d H:i:s', $question->created); ?> by:</p>
+                <a href="user/userprofile/<?= $question->user->id ?>">
+                    <div class="user-img">
+                        <img src="<?= $question->user->image; ?>" alt="<?= $question->user->name; ?>">
+                    </div>
+                    <div class="user-small">
+                        <h3><?= $question->user->name; ?></h3>
+                        <p>Score: <?= $question->user->score; ?></p>
+                    </div>
+                </a>
+            </section>
         </div>
+        <?php if ($question->tags) : ?>
+            <?php foreach ($question->tags as $tag) : ?>
+                <p><?= $tag->tag; ?></p>
+            <?php endforeach; ?>
+        <?php
+        endif;
+        ?>
     </div>
 <?php endforeach; ?>
