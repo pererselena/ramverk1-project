@@ -5782,6 +5782,85 @@ h2 {
   margin-right: 3em;
 }
 /** --------------------------------------------------------------
+ * Questions
+ */
+/** 
+ * Style for questions page
+ */
+.question-container a {
+  text-decoration: none;
+  color: #333;
+}
+.question-container a h3 {
+  color: #2e73b5;
+}
+.question-container a h3:hover {
+  color: #2e73b5;
+  text-decoration: #2e73b5;
+}
+.question-container a:hover {
+  text-decoration: underline;
+}
+.question-container > p {
+  padding: 5px;
+  background-color: #333333;
+  color: #ffffff;
+}
+.question {
+  display: flex;
+  flex-wrap: wrap;
+}
+.question > p {
+  margin-right: 20px;
+  width: 75%;
+  background-color: #f0f0f0;
+  padding: 7px;
+}
+.question .score {
+  margin-right: 20px;
+  align-self: center;
+}
+.question .user-right {
+  align-self: center;
+}
+/** 
+ * Style for tags
+ */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.tags p {
+  padding: 5px;
+  background-color: #333333;
+  color: #ffffff;
+}
+/** 
+ * Style for score
+ */
+.vote-up,
+.vote-down {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.vote-up i,
+.vote-down i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.vote-up .up,
+.vote-down .up {
+  transform: rotate(-135deg);
+}
+.vote-up .down,
+.vote-down .down {
+  transform: rotate(45deg);
+}
+/** --------------------------------------------------------------
  * Footer
  */
 .outer-wrap-footer {

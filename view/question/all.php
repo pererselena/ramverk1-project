@@ -13,20 +13,26 @@ namespace Anax\View;
     <a href="questions/create">Create question</a>
 </div>
 <?php if (!$questions) : ?>
-    <p>There are no questions to show.</p>
+    <p><i>There are no questions to show.</i></p>
 <?php
     return;
 endif;
 ?>
 <?php foreach ($questions as $question) : ?>
-    <div class="question">
+    <div class="question-container">
         <a href="questions/question/<?= $question->id ?>">
             <h3><?= $question->title; ?></h3>
         </a>
+        <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
         <div class="question">
+            <div class="score">
+                <button class="vote-up"><i class="up"></i></button>
+                <div class="vote-count"></div>
+                <button class="vote-down"><i class="down"></i></button>
+            </div>
             <p><?= $question->text; ?></p>
-            <section class="user user-right">
-                <p>Created <?= date('Y/m/d H:i:s', $question->created); ?> by:</p>
+
+            <div class="user user-right">
                 <a href="user/userprofile/<?= $question->user->id ?>">
                     <div class="user-img">
                         <img src="<?= $question->user->image; ?>" alt="<?= $question->user->name; ?>">
@@ -36,14 +42,16 @@ endif;
                         <p>Score: <?= $question->user->score; ?></p>
                     </div>
                 </a>
-            </section>
+            </div>
         </div>
-        <?php if ($question->tags) : ?>
-            <?php foreach ($question->tags as $tag) : ?>
-                <p><?= $tag->tag; ?></p>
-            <?php endforeach; ?>
-        <?php
-        endif;
-        ?>
+        <div class="tags">
+            <?php if ($question->tags) : ?>
+                <?php foreach ($question->tags as $tag) : ?>
+                    <p>#<?= $tag->tag; ?></p>
+                <?php endforeach; ?>
+            <?php
+            endif;
+            ?>
+        </div>
     </div>
 <?php endforeach; ?>
