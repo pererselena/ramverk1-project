@@ -85,6 +85,6 @@ class CreateAnswerForm extends FormModel
     public function callbackSuccess()
     {
         $qid = $this->form->value("qid");
-        $this->di->get("response")->redirect("../../questions/question/$qid")->send();
+        $this->di->get("response")->redirect("questions/question/$qid")->send();
     }
 }

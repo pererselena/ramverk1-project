@@ -93,7 +93,6 @@ class UpdateQuestionForm extends FormModel
         $tag = $this->form->value("tags");
         $session = $this->di->get("session");
 
-        
         $question = $this->getItemDetails($this->form->value("id"));
         $question->setDb($this->di->get("dbqb"));
         $question->title = $title;
@@ -125,6 +124,7 @@ class UpdateQuestionForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $this->di->get("response")->redirect("questions")->send();
+        $qid = $this->form->value("id");
+        $this->di->get("response")->redirect("questions/question/$qid")->send();
     }
 }

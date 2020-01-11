@@ -16,30 +16,37 @@ class UpdateAnswerForm extends FormModel
      *
      * @param Psr\Container\ContainerInterface $di a service container
      */
-    public function __construct(ContainerInterface $di, int $qid)
+    public function __construct(ContainerInterface $di, int $id)
     {
         parent::__construct($di);
-        $answer = new Answer;
+        $answer = $this->getItemDetails($id);
         $this->form->create(
             [
                 "id" => __CLASS__,
                 "legend" => "Create answer",
             ],
             [
+                "id" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "readonly" => true,
+                    "value" => $answer->id,
+                ],
+
                 "qid" => [
                     "type" => "hidden",
                     "required" => "true",
-                    "value" => $qid
+                    "value" => $answer->qid
                 ],
 
                 "text" => [
                     "type"        => "textarea",
-                    "placeholder" => "Write your answer...",
+                    "value" => $answer->text,
                 ],
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Create",
+                    "value" => "Update",
                     "callback" => [$this, "callbackSubmit"],
                     "class" => "primaryBtn"
                 ],
@@ -47,6 +54,19 @@ class UpdateAnswerForm extends FormModel
         );
     }
 
+    /**
+     * Get details on item to load form with.
+     *
+     * @param integer $id get details on item with id.
+     * @return Answer
+     */
+    public function getItemDetails($id): object
+    {
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $answer->findById($id);
+        return $answer;
+    }
 
 
     /**
@@ -62,7 +82,7 @@ class UpdateAnswerForm extends FormModel
         $qid = $this->form->value("qid");
         $session = $this->di->get("session");
 
-        $answer = new Answer();
+        $answer = $this->getItemDetails($this->form->value("id"));
         $answer->setDb($this->di->get("dbqb"));
         $answer->text = $text;
         $answer->qid = $qid;
@@ -84,6 +104,6 @@ class UpdateAnswerForm extends FormModel
     public function callbackSuccess()
     {
         $qid = $this->form->value("qid");
-        $this->di->get("response")->redirect("../../questions/question/$qid")->send();
+        $this->di->get("response")->redirect("questions/question/$qid")->send();
     }
 }
