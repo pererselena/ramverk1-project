@@ -5,9 +5,11 @@ namespace Elpr\Answer;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Elpr\Answer\HTMLForm\CreateAnswerForm;
+use Elpr\Answer\HTMLForm\CreateCommentForm;
 use Elpr\Answer\HTMLForm\UpdateAnswerForm;
 use Elpr\Answer\Answer;
 use Elpr\User\User;
+use Elpr\Answer\Acomment;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -79,7 +81,35 @@ class AnswerController implements ContainerInjectableInterface
         return false;
     }
 
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function createcommentAction(int $aid): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $qid = $answer->findById($aid)->qid;
+        $form = new CreateCommentForm($this->di, $aid, $qid);
+        $form->check();
 
+        $page->add("anax/v2/article/default", [
+            "content" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "A create comment page",
+        ]);
+    }
 
     /**
      * Description.

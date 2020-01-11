@@ -15,7 +15,7 @@ class Acomment extends ActiveRecordModel
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Acomment";
+    protected $tableName = "Acomments";
 
     /**
      * Columns in the table.
