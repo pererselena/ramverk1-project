@@ -6,6 +6,8 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 use phpDocumentor\Reflection\Types\Array_;
 use Elpr\Tag\Tag;
 use Elpr\Question\TagToQuestion;
+use Elpr\Answer\Answer;
+use Elpr\User\User;
 
 /**
  * A database driven model.
@@ -106,14 +108,35 @@ class Question extends ActiveRecordModel
      *
      * @return void
      */
-    public function deleteTags($di, $id)
+    public function deleteTags($di)
     {
         $tagQ = new TagToQuestion();
         $tagQ->setDb($di->get("dbqb"));
-        $tags = $tagQ->findAllWhere("qid = ?", $id);
+        $tags = $tagQ->findAllWhere("qid = ?", $this->id);
         foreach ($tags as $key => $value) {
             $value->setDb($di->get("dbqb"));
             $value->delete();
         }
     }
+
+    /**
+     * Get answers.
+     *
+     *
+     * @return array
+     */
+    public function getAnswers($di)
+    {
+        $answer = new Answer();
+        $answer->setDb($di->get("dbqb"));
+        $answers = $answer->findAllWhere("qid = ?", $this->id);
+        foreach ($answers as $answer) {
+            $user = new User();
+            $user->setDb($di->get("dbqb"));
+            $answer->user = $user->findById($answer->uid);
+        }
+
+        return $answers;
+    }
+
 }

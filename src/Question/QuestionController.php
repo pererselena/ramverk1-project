@@ -174,6 +174,8 @@ class QuestionController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $quest->user = $user->findById($quest->uid);
 
+        $quest->answers = $quest->getAnswers($this->di);
+
         $page->add("question/question", [
             "question" => $quest,
         ]);
