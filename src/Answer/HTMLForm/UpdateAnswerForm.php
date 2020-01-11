@@ -23,7 +23,7 @@ class UpdateAnswerForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Create answer",
+                "legend" => "Update answer",
             ],
             [
                 "id" => [

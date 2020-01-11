@@ -27,7 +27,7 @@ class UpdateQuestionForm extends FormModel
         $this->form->create(
             [
                 "id" => __CLASS__,
-                "legend" => "Create question",
+                "legend" => "Update question",
             ],
             [
                 "id" => [
@@ -101,7 +101,7 @@ class UpdateQuestionForm extends FormModel
         $question->uid = $session->get("userId");
         $question->score = 0;
         $question->save();
-        $question->deleteTags($this->di, $question->id);
+        $question->deleteTags($this->di);
 
         foreach ($tag as $key => $value) {
             var_dump($value);
