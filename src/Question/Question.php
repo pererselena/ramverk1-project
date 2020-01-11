@@ -6,6 +6,7 @@ use Anax\DatabaseActiveRecord\ActiveRecordModel;
 use phpDocumentor\Reflection\Types\Array_;
 use Elpr\Tag\Tag;
 use Elpr\Question\TagToQuestion;
+use Elpr\Question\Qcomment;
 use Elpr\Answer\Answer;
 use Elpr\User\User;
 
@@ -139,4 +140,23 @@ class Question extends ActiveRecordModel
         return $answers;
     }
 
+    /**
+     * Get comments.
+     *
+     *
+     * @return array
+     */
+    public function getComments($di)
+    {
+        $comment = new Qcomment();
+        $comment->setDb($di->get("dbqb"));
+        $comments = $comment->findAllWhere("qid = ?", $this->id);
+        foreach ($comments as $comment) {
+            $user = new User();
+            $user->setDb($di->get("dbqb"));
+            $comment->user = $user->findById($comment->uid);
+        }
+
+        return $comments;
+    }
 }
