@@ -54,6 +54,39 @@ endif;
         ?>
     </div>
 </div>
+<div class="question-container comment">
+    <h4>Comments to question</h4>
+    <?php if ($question->comments) : ?>
+        <?php foreach ($question->comments as $comment) : ?>
+            <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
+            <div class="question">
+                <div class="score">
+                    <button class="vote-up"><i class="up"></i></button>
+                    <div class="vote-count"></div>
+                    <button class="vote-down"><i class="down"></i></button>
+                    <div class="check"></div>
+                </div>
+                <p><?= $comment->text; ?></p>
+                <div class="user user-right">
+                    <a href="../../user/userprofile/<?= $comment->user->id ?>">
+                        <div class="user-img">
+                            <img src="<?= $comment->user->image; ?>" alt="<?= $comment->user->name; ?>">
+                        </div>
+                        <div class="user-small">
+                            <h3><?= $comment->user->name; ?></h3>
+                            <p>Score: <?= $comment->user->score; ?></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="profileBtn">
+                <a href="questions/updatecomment/<?= $comment->id ?>">Edit comment</a>
+            </div>
+        <?php endforeach; ?>
+    <?php
+    endif;
+    ?>
+</div>
 <div class="question-container answer-container">
     <h4>Answers</h4>
     <?php if ($question->answers) : ?>
@@ -81,6 +114,39 @@ endif;
             </div>
             <div class="profileBtn">
                 <a href="../../answer/update/<?= $answer->id ?>">Edit answer</a>
+            </div>
+            <div class="question-container comment">
+                <h4>Comments to answers</h4>
+                <?php if ($answer->comments) : ?>
+                    <?php foreach ($answer->comments as $comment) : ?>
+                        <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
+                        <div class="question">
+                            <div class="score">
+                                <button class="vote-up"><i class="up"></i></button>
+                                <div class="vote-count"></div>
+                                <button class="vote-down"><i class="down"></i></button>
+                                <div class="check"></div>
+                            </div>
+                            <p><?= $comment->text; ?></p>
+                            <div class="user user-right">
+                                <a href="../../user/userprofile/<?= $comment->user->id ?>">
+                                    <div class="user-img">
+                                        <img src="<?= $comment->user->image; ?>" alt="<?= $comment->user->name; ?>">
+                                    </div>
+                                    <div class="user-small">
+                                        <h3><?= $comment->user->name; ?></h3>
+                                        <p>Score: <?= $comment->user->score; ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="profileBtn">
+                            <a href="../../answer/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php
+                endif;
+                ?>
             </div>
         <?php endforeach; ?>
     <?php

@@ -66,11 +66,6 @@ class CreateUserForm extends FormModel
                     "required" => "true"
                 ],
 
-                "reset" => [
-                    "type"      => "reset",
-                    "class" => "leftBtn"
-                ],
-
                 "submit" => [
                     "type" => "submit",
                     "value" => "Create User",
