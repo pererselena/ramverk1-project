@@ -5865,6 +5865,9 @@ h2 {
 .vote-down .down {
   transform: rotate(45deg);
 }
+.answer-container {
+  margin-left: 70px;
+}
 /** --------------------------------------------------------------
  * Footer
  */
