@@ -5796,7 +5796,6 @@ h2 {
 }
 .question-container a h3:hover {
   color: #2e73b5;
-  text-decoration: #2e73b5;
 }
 .question-container a:hover {
   text-decoration: underline;
@@ -5831,10 +5830,16 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.tags p {
+.tags a {
   padding: 5px;
   background-color: #333333;
   color: #ffffff;
+  border: 3px solid rgba(51, 51, 51, 0.883);
+}
+.tags a:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #333;
 }
 /** 
  * Style for score

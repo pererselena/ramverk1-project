@@ -20,7 +20,7 @@ endif;
 
     <?php foreach ($tags as $tag) : ?>
         <a href="tags/tag/<?= $tag->id ?>">
-            <p>#<?= $tag->tag; ?></p>
+            #<?= $tag->tag; ?>
         </a>
     <?php endforeach; ?>
 </div>
