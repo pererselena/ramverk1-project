@@ -64,6 +64,7 @@ endif;
                     <button class="vote-up"><i class="up"></i></button>
                     <div class="vote-count"></div>
                     <button class="vote-down"><i class="down"></i></button>
+                    <div class="check"></div>
                 </div>
                 <p><?= $answer->text; ?></p>
                 <div class="user user-right">
