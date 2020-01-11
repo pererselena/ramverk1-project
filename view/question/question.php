@@ -95,7 +95,7 @@ endif;
             </div>
             <div class="buttons-container">
                 <div class="profileBtn">
-                    <a href="questions/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                    <a href="../updatecomment/<?= $comment->id ?>">Edit comment</a>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -5,6 +5,7 @@ namespace Elpr\Question;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Elpr\Question\HTMLForm\CreateCommentForm;
+use Elpr\Question\HTMLForm\UpdateCommentForm;
 use Elpr\Question\HTMLForm\CreateQuestionForm;
 use Elpr\Question\HTMLForm\UpdateQuestionForm;
 use Elpr\Question\Question;
@@ -212,6 +213,33 @@ class QuestionController implements ContainerInjectableInterface
 
         return $page->render([
             "title" => "A create comment page",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function updatecommentAction(int $id): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $form = new UpdateCommentForm($this->di, $id);
+        $form->check();
+
+        $page->add("anax/v2/article/default", [
+            "content" => $form->getHTML(),
+        ]);
+
+        return $page->render([
+            "title" => "A update comment page",
         ]);
     }
 
