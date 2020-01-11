@@ -26,6 +26,7 @@ CREATE TABLE TagToQuestion (
 );
 
 INSERT INTO Tags VALUES
+    ("0", "Sweden"),
     ("1", "Europe"),
     ("2", "Asia"),
     ("3", "Restaurants"),

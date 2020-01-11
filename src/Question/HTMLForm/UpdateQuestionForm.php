@@ -6,6 +6,7 @@ use Anax\HTMLForm\FormModel;
 use Psr\Container\ContainerInterface;
 use Elpr\Question\Question;
 use Elpr\Question\TagToQuestion;
+use Elpr\Tag\Tag;
 
 /**
  * Example of FormModel implementation.
@@ -17,38 +18,46 @@ class UpdateQuestionForm extends FormModel
      *
      * @param Psr\Container\ContainerInterface $di a service container
      */
-    public function __construct(ContainerInterface $di)
+    public function __construct(ContainerInterface $di, $id)
     {
         parent::__construct($di);
-        $question = new Question;
+        $question = $this->getItemDetails($id);
         $allTags = $question->getAllTags($di);
+        $selectedTags = $question->getTags($di, $id);
         $this->form->create(
             [
                 "id" => __CLASS__,
                 "legend" => "Create question",
             ],
             [
+                "id" => [
+                    "type" => "text",
+                    "validation" => ["not_empty"],
+                    "readonly" => true,
+                    "value" => $question->id,
+                ],
                 "title" => [
                     "type"        => "text",
-                    "required" => "true"
+                    "required" => "true",
+                    "value" => $question->title
                 ],
 
                 "text" => [
                     "type"        => "textarea",
-                    "placeholder" => "Write your question...",
+                    "value" => $question->text
                 ],
 
                 "tags" => [
                     "type" => "select-multiple",
                     "label" => "Select one or more tags",
 
-                    "options" => $allTags
-                    //"value"   => "8",
+                    "options" => $allTags,
+                    "checked"   => $selectedTags,
                 ],
 
                 "submit" => [
                     "type" => "submit",
-                    "value" => "Create",
+                    "value" => "Update",
                     "callback" => [$this, "callbackSubmit"],
                     "class" => "primaryBtn"
                 ],
@@ -56,7 +65,19 @@ class UpdateQuestionForm extends FormModel
         );
     }
 
-
+    /**
+     * Get details on item to load form with.
+     *
+     * @param integer $id get details on item with id.
+     * @return Question
+     */
+    public function getItemDetails($id): object
+    {
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $question->findById($id);
+        return $question;
+    }
 
     /**
      * Callback for submit-button which should return true if it could
@@ -72,7 +93,8 @@ class UpdateQuestionForm extends FormModel
         $tag = $this->form->value("tags");
         $session = $this->di->get("session");
 
-        $question = new Question();
+        
+        $question = $this->getItemDetails($this->form->value("id"));
         $question->setDb($this->di->get("dbqb"));
         $question->title = $title;
         $question->text = $text;
@@ -80,8 +102,10 @@ class UpdateQuestionForm extends FormModel
         $question->uid = $session->get("userId");
         $question->score = 0;
         $question->save();
+        $question->deleteTags($this->di, $question->id);
 
         foreach ($tag as $key => $value) {
+            var_dump($value);
             $tagToQuestion = new TagToQuestion();
             $tagToQuestion->setDb($this->di->get("dbqb"));
             $tagToQuestion->qid = $question->id;

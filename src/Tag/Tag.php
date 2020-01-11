@@ -25,32 +25,6 @@ class Tag extends ActiveRecordModel
     public $tag;
 
     /**
-     * Set the text.
-     *
-     * @param string $text the text to use.
-     *
-     * @return void
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
-
-    /**
-     * Update score.
-     *
-     * @param integer $questionId.
-     * @param integer $score.
-     *
-     * @return void
-     */
-    public function updateScore($questionId, $score)
-    {
-        $this->findById($questionId);
-        $this->score += $score;
-    }
-
-    /**
      * Get all tags.
      *
      *
