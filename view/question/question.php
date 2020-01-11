@@ -16,9 +16,15 @@ namespace Anax\View;
     return;
 endif;
 ?>
-<div class="profileBtn">
-    <a href="../update/<?= $question->id ?>">Edit question</a>
+<div class="buttons-container">
+    <div class="profileBtn">
+        <a href="../../answer/create/<?= $question->id ?>">Add answer</a>
+    </div>
+    <div class="profileBtn">
+        <a href="../update/<?= $question->id ?>">Edit question</a>
+    </div>
 </div>
+
 
 <div class="question-container">
     <h3><?= $question->title; ?></h3>
@@ -53,10 +59,18 @@ endif;
         endif;
         ?>
     </div>
+    <div class="buttons-container">
+        <div class="profileBtn">
+            <a href="../createcomment/<?= $question->id ?>">Add comment</a>
+        </div>
+    </div>
 </div>
+
+<!-- Commen to question -->
+
 <div class="question-container comment">
-    <h4>Comments to question</h4>
     <?php if ($question->comments) : ?>
+        <h4>Comments to question</h4>
         <?php foreach ($question->comments as $comment) : ?>
             <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
             <div class="question">
@@ -79,18 +93,23 @@ endif;
                     </a>
                 </div>
             </div>
-            <div class="profileBtn">
-                <a href="questions/updatecomment/<?= $comment->id ?>">Edit comment</a>
+            <div class="buttons-container">
+                <div class="profileBtn">
+                    <a href="questions/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                </div>
             </div>
         <?php endforeach; ?>
     <?php
     endif;
     ?>
 </div>
+
+<!-- Answers -->
+
 <div class="question-container answer-container">
-    <h4>Answers</h4>
     <?php if ($question->answers) : ?>
         <?php foreach ($question->answers as $answer) : ?>
+            <h4>Answer</h4>
             <p>Created <?= date('Y/m/d H:i:s', $answer->created); ?></p>
             <div class="question">
                 <div class="score">
@@ -112,12 +131,18 @@ endif;
                     </a>
                 </div>
             </div>
-            <div class="profileBtn">
-                <a href="../../answer/update/<?= $answer->id ?>">Edit answer</a>
+            <div class="buttons-container">
+                <div class="profileBtn">
+                    <a href="../../answer/update/<?= $answer->id ?>">Edit answer</a>
+                </div>
+                <div class="profileBtn">
+                    <a href="../../answer/createcomment/<?= $answer->id ?>">Add comment</a>
+                </div>
             </div>
+            <!-- Commen to answer -->
             <div class="question-container comment">
-                <h4>Comments to answers</h4>
                 <?php if ($answer->comments) : ?>
+                    <h4>Comments to answer</h4>
                     <?php foreach ($answer->comments as $comment) : ?>
                         <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
                         <div class="question">
@@ -140,8 +165,10 @@ endif;
                                 </a>
                             </div>
                         </div>
-                        <div class="profileBtn">
-                            <a href="../../answer/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                        <div class="buttons-container">
+                            <div class="profileBtn">
+                                <a href="../../answer/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 <?php
