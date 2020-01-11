@@ -15,7 +15,7 @@ class Answer extends ActiveRecordModel
     /**
      * @var string $tableName name of the database table.
      */
-    protected $tableName = "Answers";
+    protected $tableName = "Answer";
 
     /**
      * Columns in the table.
