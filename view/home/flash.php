@@ -7,4 +7,4 @@ namespace Anax\View;
  */
 
 ?>
-<img src="image/flash.jpg" alt="Map with pins.">
+<img src="img/flash.jpg" alt="Map with pins.">
