@@ -26,9 +26,9 @@ endif;
         <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
         <div class="question">
             <div class="score">
-                <button class="vote-up"><i class="up"></i></button>
-                <div class="vote-count"></div>
-                <button class="vote-down"><i class="down"></i></button>
+                <a href="questions/vote/<?= $question->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
+                <div class="vote-count"><?= $question->score; ?></div>
+                <a href="questions/vote/<?= $question->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>
             </div>
             <div class="text"><?= $question->text; ?></div>
 
