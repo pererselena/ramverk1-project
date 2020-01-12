@@ -23,29 +23,6 @@ class TagController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-
-
-    /**
-     * @var $data description
-     */
-    //private $data;
-
-
-
-    // /**
-    //  * The initialize method is optional and will always be called before the
-    //  * target method/action. This is a convienient method where you could
-    //  * setup internal properties that are commonly used by several methods.
-    //  *
-    //  * @return void
-    //  */
-    // public function initialize() : void
-    // {
-    //     ;
-    // }
-
-
-
     /**
      * Description.
      *
@@ -81,7 +58,7 @@ class TagController implements ContainerInjectableInterface
      */
     public function tagActionGet(int $id): object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $tagToQuestion = new TagToQuestion();

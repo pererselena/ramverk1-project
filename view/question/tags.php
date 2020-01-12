@@ -24,4 +24,3 @@ endif;
         </a>
     <?php endforeach; ?>
 </div>
-</div>
