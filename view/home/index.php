@@ -54,9 +54,7 @@ $count = 0;
         <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
         <div class="question">
             <div class="score">
-                <button class="vote-up"><i class="up"></i></button>
-                <div class="vote-count"></div>
-                <button class="vote-down"><i class="down"></i></button>
+                <div class="vote-count">Score: <?= $question->score; ?></div>
             </div>
             <div class="text"><?= $question->text; ?></div>
 

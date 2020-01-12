@@ -11,6 +11,7 @@ use Elpr\Question\Question;
 use Elpr\Question\TagToQuestion;
 use Elpr\Tag\Tag;
 use Elpr\User\User;
+use Elpr\Filter\TextFilter;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -65,16 +66,18 @@ class TagController implements ContainerInjectableInterface
         $tagToQuestion->setDb($this->di->get("dbqb"));
         $qids = $tagToQuestion->findAllWhere("tid = ?", $id);
         $questions = array();
+        $textFilter = new TextFilter();
         foreach ($qids as $qid) {
             array_push($questions, $question->findById($qid->qid));
         }
 
-        foreach ($questions as $key => $quest) {
+        foreach ($questions as $quest) {
             $quest->tags = [];
             $tags = $tagToQuestion->findAllWhere("qid = ?", $quest->id);
+            $quest->text = $textFilter->markdown($quest->text);
             if ($tags) {
                 $tagArr = array();
-                foreach ($tags as $key => $item) {
+                foreach ($tags as $item) {
                     $tag = new Tag();
                     $tag->setDb($this->di->get("dbqb"));
                     array_push($tagArr, $tag->findWhere("id = ?", $item->tid));
