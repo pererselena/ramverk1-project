@@ -97,9 +97,8 @@ class UpdateQuestionForm extends FormModel
         $question->setDb($this->di->get("dbqb"));
         $question->title = $title;
         $question->text = $text;
-        $question->created = time();
+        $question->updated = time();
         $question->uid = $session->get("userId");
-        $question->score = 0;
         $question->save();
         $question->deleteTags($this->di);
 

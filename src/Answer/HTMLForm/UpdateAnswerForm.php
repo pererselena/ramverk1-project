@@ -86,9 +86,8 @@ class UpdateAnswerForm extends FormModel
         $answer->setDb($this->di->get("dbqb"));
         $answer->text = $text;
         $answer->qid = $qid;
-        $answer->created = time();
+        $answer->updated = time();
         $answer->uid = $session->get("userId");
-        $answer->score = 0;
         $answer->save();
 
         $this->form->addOutput("answer was updated.");
