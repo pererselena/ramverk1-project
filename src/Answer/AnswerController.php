@@ -10,6 +10,7 @@ use Elpr\Answer\HTMLForm\UpdateCommentForm;
 use Elpr\Answer\HTMLForm\UpdateAnswerForm;
 use Elpr\Answer\Answer;
 use Elpr\User\User;
+use Elpr\Question\Question;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -189,6 +190,50 @@ class AnswerController implements ContainerInjectableInterface
         }
         $page->add("anax/v2/article/default", [
             "content" => "OOPS!!! You are not the owner of this answer!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function acceptedAction(int $id): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $ans = $answer->findById($id);
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $question->findById($ans->qid);
+        $ans->unsetAccepted($this->di);
+        if ($question->uid == $userId) {
+            // $all = $answer->findAll();
+            // foreach ($all as $curAns) {
+            //     $curAns->unsetAccepted($this->di);
+            // }
+            $ans->accepted = true;
+            $ans->save();
+            return $this->di->response->redirect("questions/question/$ans->qid");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are not the owner of this question!",
         ]);
 
         return $page->render([
