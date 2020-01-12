@@ -5,6 +5,8 @@ filter:
     excluded_paths: [vendor/*, test/*]
 
 build:
+  environment:
+    php: 7.2.13
     nodes:
         analysis:
             tests:
