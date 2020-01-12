@@ -35,7 +35,7 @@ endif;
             <div class="vote-count"></div>
             <button class="vote-down"><i class="down"></i></button>
         </div>
-        <p><?= $question->text; ?></p>
+        <div class="text"><?= $question->text; ?></div>
         <div class="user user-right">
             <a href="../../user/userprofile/<?= $question->user->id ?>">
                 <div class="user-img">
@@ -80,7 +80,7 @@ endif;
                     <button class="vote-down"><i class="down"></i></button>
                     <div class="check"></div>
                 </div>
-                <p><?= $comment->text; ?></p>
+                <div class="text"><?= $comment->text; ?></div>
                 <div class="user user-right">
                     <a href="../../user/userprofile/<?= $comment->user->id ?>">
                         <div class="user-img">
@@ -118,7 +118,7 @@ endif;
                     <button class="vote-down"><i class="down"></i></button>
                     <div class="check"></div>
                 </div>
-                <p><?= $answer->text; ?></p>
+                <div class="text"><?= $answer->text; ?></div>
                 <div class="user user-right">
                     <a href="../../user/userprofile/<?= $answer->user->id ?>">
                         <div class="user-img">
@@ -152,7 +152,7 @@ endif;
                                 <button class="vote-down"><i class="down"></i></button>
                                 <div class="check"></div>
                             </div>
-                            <p><?= $comment->text; ?></p>
+                            <div class="text"><?= $comment->text; ?></div>
                             <div class="user user-right">
                                 <a href="../../user/userprofile/<?= $comment->user->id ?>">
                                     <div class="user-img">

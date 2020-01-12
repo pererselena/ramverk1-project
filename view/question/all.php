@@ -30,7 +30,7 @@ endif;
                 <div class="vote-count"></div>
                 <button class="vote-down"><i class="down"></i></button>
             </div>
-            <p><?= $question->text; ?></p>
+            <div class="text"><?= $question->text; ?></div>
 
             <div class="user user-right">
                 <a href="user/userprofile/<?= $question->user->id ?>">

@@ -5816,7 +5816,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
 }
-.question > p {
+.question .text {
   margin-right: 20px;
   width: 75%;
   background-color: #f0f0f0;
