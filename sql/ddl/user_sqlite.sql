@@ -20,5 +20,6 @@ CREATE TABLE User (
     "created" TIMESTAMP,
     "updated" DATETIME,
     "deleted" DATETIME,
+    "votes" INTEGER,
     "active" DATETIME
 );
