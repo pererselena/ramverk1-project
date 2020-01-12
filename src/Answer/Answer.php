@@ -34,6 +34,7 @@ class Answer extends ActiveRecordModel
     public $updated;
     public $deleted;
     public $active;
+    public $accepted;
 
     /**
      * Set the text.
@@ -83,4 +84,19 @@ class Answer extends ActiveRecordModel
         return $comments;
     }
 
+    /**
+     * Get comments.
+     *
+     *
+     * @return void
+     */
+    public function unsetAccepted($di)
+    {
+        $this->setDb($di->get("dbqb"));
+        $all = $this->findAll();
+        foreach ($all as $answer) {
+            $answer->accepted = false;
+            $answer->save();
+        }
+    }
 }
