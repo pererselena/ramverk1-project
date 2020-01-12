@@ -271,4 +271,48 @@ class QuestionController implements ContainerInjectableInterface
             "title" => "Error",
         ]);
     }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function voteAction(int $id): object
+    {
+        $request = $this->di->get("request");
+        $vote = (int)$request->getGet("vote") ?? 0;
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $question->findById($id);
+        if ($question->uid !== $userId) {
+            $question->score += $vote;
+            $user->findById($userId);
+            $user->votes += 1;
+            $user->save();
+            $question->save();
+            $user->findById($question->uid);
+            $user->score += $vote;
+            $user->save();
+            return $this->di->response->redirect("questions/question/$id");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are the owner of this question! Cheater!!!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
 }
