@@ -22,6 +22,7 @@ namespace Anax\View;
         <p>Questions: <?= $numQuest; ?></p>
         <p>Answers: <?= $numAnswer; ?></p>
         <p>Comments: <?= $numComments; ?></p>
+        <p>Votes: <?= $user->votes; ?></p>
     </div>
 </div>
 <div class="profileBtn">

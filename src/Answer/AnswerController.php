@@ -11,6 +11,7 @@ use Elpr\Answer\HTMLForm\UpdateAnswerForm;
 use Elpr\Answer\Answer;
 use Elpr\User\User;
 use Elpr\Question\Question;
+use Elpr\Answer\Acomment;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -234,6 +235,97 @@ class AnswerController implements ContainerInjectableInterface
         }
         $page->add("anax/v2/article/default", [
             "content" => "OOPS!!! You are not the owner of this question!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function voteAction(int $id): object
+    {
+        $request = $this->di->get("request");
+        $vote = (int) $request->getGet("vote") ?? 0;
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $answer->findById($id);
+        if ($answer->uid !== $userId) {
+            $answer->score += $vote;
+            $user->findById($userId);
+            $user->votes += 1;
+            $user->save();
+            $answer->save();
+            $user->findById($answer->uid);
+            $user->score += $vote;
+            $user->save();
+            return $this->di->response->redirect("questions/question/$answer->qid");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are the owner of this answer! Cheater!!!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function votecommentAction(int $id): object
+    {
+        $request = $this->di->get("request");
+        $vote = (int) $request->getGet("vote") ?? 0;
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $comment = new Acomment();
+        $comment->setDb($this->di->get("dbqb"));
+        $comment->findById($id);
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $answer->findById($comment->aid);
+        if ($comment->uid !== $userId) {
+            $comment->score += $vote;
+            $user->findById($userId);
+            $user->votes += 1;
+            $user->save();
+            $comment->save();
+            $user->findById($comment->uid);
+            $user->score += $vote;
+            $user->save();
+            return $this->di->response->redirect("questions/question/$answer->qid");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are the owner of this comment! Cheater!!!",
         ]);
 
         return $page->render([

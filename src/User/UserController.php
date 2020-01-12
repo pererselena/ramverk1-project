@@ -38,9 +38,13 @@ class UserController implements ContainerInjectableInterface
         $page = $this->di->get("page");;
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
+        $users = $user->findAll();
+        foreach ($users as $curUser) {
+            $curUser->activityScore($this->di);
+        }
 
         $page->add("user/users", [
-            "users" => $user->findAll(),
+            "users" => $users,
         ]);
         return $page->render([
             "title" => "A index page",

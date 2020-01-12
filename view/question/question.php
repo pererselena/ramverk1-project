@@ -75,9 +75,9 @@ endif;
             <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
             <div class="question">
                 <div class="score">
-                    <button class="vote-up"><i class="up"></i></button>
-                    <div class="vote-count"></div>
-                    <button class="vote-down"><i class="down"></i></button>
+                    <a href="../../questions/votecomment/<?= $comment->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
+                    <div class="vote-count"><?= $comment->score; ?></div>
+                    <a href="../../questions/votecomment/<?= $comment->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>
                 </div>
                 <div class="text"><?= $comment->text; ?></div>
                 <div class="user user-right">
@@ -107,14 +107,19 @@ endif;
 
 <div class="question-container answer-container">
     <?php if ($question->answers) : ?>
+        <div class="sort">
+            <a href="<?= $question->id; ?>?sort=date">Newest</a>
+            <a href="<?= $question->id; ?>">Oldest</a>
+            <a href="<?= $question->id; ?>?sort=score">Score</a>
+        </div>
         <?php foreach ($question->answers as $answer) : ?>
             <h4>Answer</h4>
             <p>Created <?= date('Y/m/d H:i:s', $answer->created); ?></p>
             <div class="question">
                 <div class="score">
-                    <button class="vote-up"><i class="up"></i></button>
-                    <div class="vote-count"></div>
-                    <button class="vote-down"><i class="down"></i></button>
+                    <a href="../../answer/vote/<?= $answer->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
+                    <div class="vote-count"><?= $answer->score; ?></div>
+                    <a href="../../answer/vote/<?= $answer->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>
                     <a href="../../answer/accepted/<?= $answer->id ?>">
                         <?php if ($answer->accepted == "1") : ?>
                             <div class="check"></div>
@@ -155,9 +160,9 @@ endif;
                         <p>Created <?= date('Y/m/d H:i:s', $comment->created); ?></p>
                         <div class="question">
                             <div class="score">
-                                <button class="vote-up"><i class="up"></i></button>
-                                <div class="vote-count"></div>
-                                <button class="vote-down"><i class="down"></i></button>
+                                <a href="../../answer/votecomment/<?= $comment->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
+                                <div class="vote-count"><?= $comment->score; ?></div>
+                                <a href="../../answer/votecomment/<?= $comment->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>
                             </div>
                             <div class="text"><?= $comment->text; ?></div>
                             <div class="user user-right">

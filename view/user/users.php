@@ -25,6 +25,7 @@ endif;
                 <div class="user-small">
                     <h3><?= $user->name; ?></h3>
                     <p>Score: <?= $user->score; ?></p>
+                    <p>Activity score: <?= $user->activityScore; ?></p>
                 </div>
             </a>
         </div>

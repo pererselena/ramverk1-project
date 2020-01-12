@@ -38,32 +38,6 @@ class Question extends ActiveRecordModel
     public $active;
 
     /**
-     * Set the text.
-     *
-     * @param string $text the text to use.
-     *
-     * @return void
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-    }
-
-    /**
-     * Update score.
-     *
-     * @param integer $questionId.
-     * @param integer $score.
-     *
-     * @return void
-     */
-    public function updateScore($questionId, $score)
-    {
-        $this->findById($questionId);
-        $this->score += $score;
-    }
-
-    /**
      * Get all tags.
      *
      *
@@ -127,7 +101,7 @@ class Question extends ActiveRecordModel
      *
      * @return array
      */
-    public function getAnswers($di)
+    public function getAnswers($di, $sort = "date")
     {
         $answer = new Answer();
         $answer->setDb($di->get("dbqb"));
@@ -139,7 +113,15 @@ class Question extends ActiveRecordModel
             $textFilter = new TextFilter();
             $answer->text = $textFilter->markdown($answer->text);
         }
-
+        if ($sort == "score") {
+            usort($answers, function ($first, $second) {
+                return $first->score < $second->score;
+            });
+        } elseif ($sort == "date") {
+            usort($answers, function ($first, $second) {
+                return $first->created < $second->created;
+            });
+        }
         return $answers;
     }
 

@@ -137,7 +137,9 @@ class QuestionController implements ContainerInjectableInterface
      */
     public function questionActionGet(int $id): object
     {
-        $page = $this->di->get("page");;
+        $request = $this->di->get("request");
+        $sort = $request->getGet("sort") ?? "";
+        $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $quest = $question->findById($id);
@@ -161,7 +163,7 @@ class QuestionController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $quest->user = $user->findById($quest->uid);
 
-        $quest->answers = $quest->getAnswers($this->di);
+        $quest->answers = $quest->getAnswers($this->di, $sort);
         $quest->comments = $quest->getComments($this->di);
         foreach ($quest->answers as $answer) {
             $answer->comments = $answer->getComments($this->di);
@@ -309,6 +311,50 @@ class QuestionController implements ContainerInjectableInterface
         }
         $page->add("anax/v2/article/default", [
             "content" => "OOPS!!! You are the owner of this question! Cheater!!!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function votecommentAction(int $id): object
+    {
+        $request = $this->di->get("request");
+        $vote = (int) $request->getGet("vote") ?? 0;
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $comment = new Qcomment();
+        $comment->setDb($this->di->get("dbqb"));
+        $comment->findById($id);
+        if ($comment->uid !== $userId) {
+            $comment->score += $vote;
+            $user->findById($userId);
+            $user->votes += 1;
+            $user->save();
+            $comment->save();
+            $user->findById($comment->uid);
+            $user->score += $vote;
+            $user->save();
+            return $this->di->response->redirect("questions/question/$comment->qid");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are the owner of this comment! Cheater!!!",
         ]);
 
         return $page->render([
