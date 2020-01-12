@@ -53,6 +53,7 @@ CREATE TABLE Answer (
     "updated" DATETIME,
     "deleted" DATETIME,
     "active" DATETIME,
+    "accepted" BOOLEAN NOT NULL DEFAULT false,
     FOREIGN KEY("uid") REFERENCES User("id"),
     FOREIGN KEY("qid") REFERENCES Questions("id")
 );
