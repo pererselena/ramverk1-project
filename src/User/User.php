@@ -3,10 +3,15 @@
 namespace Elpr\User;
 
 use Anax\DatabaseActiveRecord\ActiveRecordModel;
+use Elpr\Question\Qcomment;
+use Elpr\Question\Question;
+use Elpr\Answer\Answer;
+use Elpr\Answer\Acomment;
 
 /**
  * A database driven model.
  */
+
 class User extends ActiveRecordModel
 {
 
@@ -99,5 +104,33 @@ class User extends ActiveRecordModel
             $url .= ' />';
         }
         $this->image = $url;
+    }
+
+    /**
+     * Calculate activity score.
+     *
+     * @param object $di 
+     *
+     * @return void
+     */
+    public function activityScore($di)
+    {
+        $question = new Question();
+        $question->setDb($di->get("dbqb"));
+        $questions = $question->findAllWhere("uid = ?", $this->id);
+        $answer = new Answer();
+        $answer->setDb($di->get("dbqb"));
+        $answers = $answer->findAllWhere("uid = ?", $this->id);
+        $acomment = new Acomment();
+        $acomment->setDb($di->get("dbqb"));
+        $acomments = $acomment->findAllWhere("uid = ?", $this->id);
+        $qcomment = new Qcomment();
+        $qcomment->setDb($di->get("dbqb"));
+        $qcomments = $qcomment->findAllWhere("uid = ?", $this->id);
+        $numQuest = count($questions);
+        $numAnswer = count($answers);
+        $numComments = count($acomments) + count($qcomments);
+
+        $this->activityScore = $numAnswer + $numComments + $numQuest;
     }
 }
