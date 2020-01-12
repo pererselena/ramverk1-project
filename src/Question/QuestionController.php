@@ -12,6 +12,7 @@ use Elpr\Question\Question;
 use Elpr\Question\TagToQuestion;
 use Elpr\Tag\Tag;
 use Elpr\User\User;
+use Elpr\Filter\TextFilter;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -29,23 +30,6 @@ class QuestionController implements ContainerInjectableInterface
     /**
      * @var $data description
      */
-    //private $data;
-
-
-
-    // /**
-    //  * The initialize method is optional and will always be called before the
-    //  * target method/action. This is a convienient method where you could
-    //  * setup internal properties that are commonly used by several methods.
-    //  *
-    //  * @return void
-    //  */
-    // public function initialize() : void
-    // {
-    //     ;
-    // }
-
-
 
     /**
      * Description.
@@ -64,7 +48,7 @@ class QuestionController implements ContainerInjectableInterface
         $questions = $question->findAll();
         $tagToQuestion = new TagToQuestion();
         $tagToQuestion->setDb($this->di->get("dbqb"));
-        
+        $textFilter = new TextFilter();
         
         foreach ($questions as $key => $quest) {
             $quest->tags = [];
@@ -79,6 +63,7 @@ class QuestionController implements ContainerInjectableInterface
                 $quest->tags = $tagArr;
             }
 
+            $quest->text = $textFilter->markdown($quest->text);
             $user = new User();
             $user->setDb($this->di->get("dbqb"));
             $quest->user = $user->findById($quest->uid);
@@ -158,6 +143,8 @@ class QuestionController implements ContainerInjectableInterface
         $quest = $question->findById($id);
         $tagToQuestion = new TagToQuestion();
         $tagToQuestion->setDb($this->di->get("dbqb"));
+        $textFilter = new TextFilter();
+        $quest->text = $textFilter->markdown($quest->text);
 
         $quest->tags = [];
         $tags = $tagToQuestion->findAllWhere("qid = ?", $quest->id);
@@ -170,7 +157,6 @@ class QuestionController implements ContainerInjectableInterface
             }
             $quest->tags = $tagArr;
         }
-
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $quest->user = $user->findById($quest->uid);
@@ -285,73 +271,4 @@ class QuestionController implements ContainerInjectableInterface
             "title" => "Error",
         ]);
     }
-
-
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return bool
-    //  */
-    // private function isLoggedIn()
-    // {
-    //     $session = $this->di->get("session");
-
-    //     if ($session->get("userEmail")) {
-    //         return true;
-    //     }
-
-    //     return false;
-    // }
-
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return bool
-    //  */
-    // public function logoutAction()
-    // {
-    //     if ($this->isLoggedIn()) {
-    //         $session = $this->di->get("session");
-    //         $session->delete("userEmail");
-    //     }
-    //     return $this->di->response->redirect("user/login");
-    // }
-
-    // /**
-    //  * Description.
-    //  *
-    //  * @param datatype $variable Description
-    //  *
-    //  * @throws Exception
-    //  *
-    //  * @return object as a response object
-    //  */
-    // public function profileAction(): object
-    // {
-    //     if (!$this->isLoggedIn()) {
-    //         return $this->di->response->redirect("user/login");
-    //     }
-    //     $page = $this->di->get("page");
-    //     $user = new User();
-    //     $user->setDb($this->di->get("dbqb"));
-    //     $session = $this->di->get("session");
-
-    //     $page->add("user/profile", [
-    //         "user" => $user->findWhere("email = ?", $session->get("userEmail")),
-    //     ]);
-
-    //     return $page->render([
-    //         "title" => "Profile",
-    //     ]);
-    // }
-
-    
 }

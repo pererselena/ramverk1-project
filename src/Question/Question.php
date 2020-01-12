@@ -9,6 +9,7 @@ use Elpr\Question\TagToQuestion;
 use Elpr\Question\Qcomment;
 use Elpr\Answer\Answer;
 use Elpr\User\User;
+use Elpr\Filter\TextFilter;
 
 /**
  * A database driven model.
@@ -135,6 +136,8 @@ class Question extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $answer->user = $user->findById($answer->uid);
+            $textFilter = new TextFilter();
+            $answer->text = $textFilter->markdown($answer->text);
         }
 
         return $answers;
@@ -155,6 +158,8 @@ class Question extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $comment->user = $user->findById($comment->uid);
+            $textFilter = new TextFilter();
+            $comment->text = $textFilter->markdown($comment->text);
         }
 
         return $comments;

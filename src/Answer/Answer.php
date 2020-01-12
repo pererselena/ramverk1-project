@@ -7,6 +7,7 @@ use phpDocumentor\Reflection\Types\Array_;
 use Elpr\Tag\Tag;
 use Elpr\User\User;
 use Elpr\Answer\Acomment;
+use Elpr\Filter\TextFilter;
 
 /**
  * A database driven model.
@@ -75,6 +76,8 @@ class Answer extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $comment->user = $user->findById($comment->uid);
+            $textFilter = new TextFilter();
+            $comment->text = $textFilter->markdown($comment->text);
         }
 
         return $comments;
