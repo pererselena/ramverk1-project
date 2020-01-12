@@ -4,10 +4,14 @@ namespace Elpr\User;
 
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
+use Elpr\Answer\Acomment;
+use Elpr\Answer\Answer;
+use Elpr\Question\Question;
 use Elpr\User\HTMLForm\UserLoginForm;
 use Elpr\User\HTMLForm\CreateUserForm;
 use Elpr\User\HTMLForm\UpdateForm;
 use Elpr\User\User;
+use Elpr\Question\Qcomment;
 
 // use Anax\Route\Exception\ForbiddenException;
 // use Anax\Route\Exception\NotFoundException;
@@ -19,29 +23,6 @@ use Elpr\User\User;
 class UserController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
-
-
-
-    /**
-     * @var $data description
-     */
-    //private $data;
-
-
-
-    // /**
-    //  * The initialize method is optional and will always be called before the
-    //  * target method/action. This is a convienient method where you could
-    //  * setup internal properties that are commonly used by several methods.
-    //  *
-    //  * @return void
-    //  */
-    // public function initialize() : void
-    // {
-    //     ;
-    // }
-
-
 
     /**
      * Description.
@@ -174,9 +155,35 @@ class UserController implements ContainerInjectableInterface
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $session = $this->di->get("session");
+        $id = $session->get("userId");
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $questions = $question->findAllWhere("uid = ?", $id);
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $answers = $answer->findAllWhere("uid = ?", $id);
+        $acomment = new Acomment();
+        $acomment->setDb($this->di->get("dbqb"));
+        $acomments = $acomment->findAllWhere("uid = ?", $id);
+        $qcomment = new Qcomment();
+        $qcomment->setDb($this->di->get("dbqb"));
+        $qcomments = $qcomment->findAllWhere("uid = ?", $id);
+        $numQuest = count($questions);
+        $numAnswer = count($answers);
+        $numComments = count($acomments) + count($qcomments);
+        foreach ($acomments as $acomment) {
+            $acomment->qid = $answer->findWhere("id = ?", $acomment->aid)->qid;
+        }
 
         $page->add("user/profile", [
             "user" => $user->findWhere("email = ?", $session->get("userEmail")),
+            "questions" => $questions,
+            "answers" => $answers,
+            "acomments" => $acomments,
+            "numQuest" => $numQuest,
+            "numAnswer" => $numAnswer,
+            "numComments" => $numComments,
+            "qcomments" => $qcomments,
         ]);
 
         return $page->render([
@@ -199,9 +206,35 @@ class UserController implements ContainerInjectableInterface
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $profile = $user->findById($id);
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $questions = $question->findAllWhere("uid = ?", $id);
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $answers = $answer->findAllWhere("uid = ?", $id);
+        $acomment = new Acomment();
+        $acomment->setDb($this->di->get("dbqb"));
+        $acomments = $acomment->findAllWhere("uid = ?", $id);
+        $qcomment = new Qcomment();
+        $qcomment->setDb($this->di->get("dbqb"));
+        $qcomments = $qcomment->findAllWhere("uid = ?", $id);
+        $numQuest = count($questions);
+        $numAnswer = count($answers);
+        $numComments = count($acomments) + count($qcomments);
+        foreach ($acomments as $acomment) {
+            $acomment->qid = $answer->findWhere("id = ?", $acomment->aid)->qid;
+        }
+
 
         $page->add("user/profile-id", [
             "profile" => $profile,
+            "questions" => $questions,
+            "answers" => $answers,
+            "acomments" => $acomments,
+            "numQuest" => $numQuest,
+            "numAnswer" => $numAnswer,
+            "numComments" => $numComments,
+            "qcomments" => $qcomments,
         ]);
         return $page->render([
             "title" => "A index page",
