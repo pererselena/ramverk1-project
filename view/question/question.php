@@ -78,7 +78,6 @@ endif;
                     <button class="vote-up"><i class="up"></i></button>
                     <div class="vote-count"></div>
                     <button class="vote-down"><i class="down"></i></button>
-                    <div class="check"></div>
                 </div>
                 <div class="text"><?= $comment->text; ?></div>
                 <div class="user user-right">
@@ -116,7 +115,16 @@ endif;
                     <button class="vote-up"><i class="up"></i></button>
                     <div class="vote-count"></div>
                     <button class="vote-down"><i class="down"></i></button>
-                    <div class="check"></div>
+                    <a href="../../answer/accepted/<?= $answer->id ?>">
+                        <?php if ($answer->accepted == "1") : ?>
+                            <div class="check"></div>
+                        <?php
+                        else : ?>
+                            <div class="check gray"></div>
+                        <?php
+                        endif;
+                        ?>
+                    </a>
                 </div>
                 <div class="text"><?= $answer->text; ?></div>
                 <div class="user user-right">
@@ -150,7 +158,6 @@ endif;
                                 <button class="vote-up"><i class="up"></i></button>
                                 <div class="vote-count"></div>
                                 <button class="vote-down"><i class="down"></i></button>
-                                <div class="check"></div>
                             </div>
                             <div class="text"><?= $comment->text; ?></div>
                             <div class="user user-right">
