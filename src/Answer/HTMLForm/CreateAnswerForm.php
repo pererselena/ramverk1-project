@@ -70,6 +70,7 @@ class CreateAnswerForm extends FormModel
         $answer->created = time();
         $answer->uid = $session->get("userId");
         $answer->score = 0;
+        $answer->accepted = 0;
         $answer->save();
 
         $this->form->addOutput("Answer was created.");

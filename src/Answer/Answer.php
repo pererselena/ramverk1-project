@@ -93,9 +93,10 @@ class Answer extends ActiveRecordModel
     public function unsetAccepted($di)
     {
         $this->setDb($di->get("dbqb"));
-        $all = $this->findAll();
+        $all = $this->findAllWhere("qid = ?", $this->qid);
         foreach ($all as $answer) {
-            $answer->accepted = false;
+            $answer->accepted = 0;
+            $answer->setDb($di->get("dbqb"));
             $answer->save();
         }
     }
