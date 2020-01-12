@@ -101,13 +101,6 @@ class CreateUserForm extends FormModel
             return false;
         }
 
-        // Save to database
-        // $db = $this->di->get("dbqb");
-        // $password = password_hash($password, PASSWORD_DEFAULT);
-        // $db->connect()
-        //     ->insert("User", ["name", "password", "tel", "birthdate", "email"])
-        //     ->execute([$name, $password, $tel, $date, $email]);
-
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $user->name = $name;
@@ -117,6 +110,7 @@ class CreateUserForm extends FormModel
         $user->score = 0;
         $user->gravatar($email);
         $user->setPassword($password);
+        $user->votes = 0;
         $user->save();
 
         $session = $this->di->get("session");

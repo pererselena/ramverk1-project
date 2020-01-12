@@ -37,6 +37,7 @@ class User extends ActiveRecordModel
     public $updated;
     public $deleted;
     public $active;
+    public $votes;
 
     /**
      * Set the password.
@@ -131,6 +132,6 @@ class User extends ActiveRecordModel
         $numAnswer = count($answers);
         $numComments = count($acomments) + count($qcomments);
 
-        $this->activityScore = $numAnswer + $numComments + $numQuest;
+        $this->activityScore = $numAnswer + $numComments + $numQuest + $this->votes;
     }
 }
