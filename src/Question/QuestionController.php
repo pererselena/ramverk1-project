@@ -62,6 +62,7 @@ class QuestionController implements ContainerInjectableInterface
                 }
                 $quest->tags = $tagArr;
             }
+            $quest->numAns = sizeof($quest->getAnswers($this->di));
 
             $quest->text = $textFilter->markdown($quest->text);
             $user = new User();

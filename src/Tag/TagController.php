@@ -84,7 +84,7 @@ class TagController implements ContainerInjectableInterface
                 }
                 $quest->tags = $tagArr;
             }
-
+            $quest->numAns = sizeof($quest->getAnswers($this->di));
             $user = new User();
             $user->setDb($this->di->get("dbqb"));
             $quest->user = $user->findById($quest->uid);

@@ -52,6 +52,7 @@ $count = 0;
             <h3><?= $question->title; ?></h3>
         </a>
         <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
+        <p>Answers: <?= $question->numAns ?></p>
         <div class="question">
             <div class="score">
                 <div class="vote-count">Score: <?= $question->score; ?></div>

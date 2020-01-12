@@ -101,7 +101,7 @@ class Question extends ActiveRecordModel
      *
      * @return array
      */
-    public function getAnswers($di, $sort = "date")
+    public function getAnswers($di, $sort = "")
     {
         $answer = new Answer();
         $answer->setDb($di->get("dbqb"));
