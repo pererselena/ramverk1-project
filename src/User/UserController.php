@@ -35,7 +35,7 @@ class UserController implements ContainerInjectableInterface
      */
     public function indexActionGet() : object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $users = $user->findAll();
@@ -207,7 +207,7 @@ class UserController implements ContainerInjectableInterface
      */
     public function userprofileActionGet(int $id): object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $profile = $user->findById($id);

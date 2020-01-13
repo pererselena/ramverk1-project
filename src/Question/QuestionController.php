@@ -42,7 +42,7 @@ class QuestionController implements ContainerInjectableInterface
      */
     public function indexActionGet(): object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $questions = $question->findAll();

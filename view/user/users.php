@@ -11,7 +11,7 @@ namespace Anax\View;
 ?><h2>Users</h2>
 <?php if (!$users) : ?>
     <p>There are no users to show.</p>
-<?php
+    <?php
     return;
 endif;
 ?>

@@ -2,52 +2,66 @@
 /**
  * Supply the basis for the navbar as an array.
  */
+
+$items = [
+    [
+        "text" => "Home",
+        "url" => "",
+        "title" => "Home page.",
+    ],
+    [
+        "text" => "About",
+        "url" => "about",
+        "title" => "About this webpage.",
+    ],
+    [
+        "text" => "Tags",
+        "url" => "tags",
+        "title" => "Search tags.",
+    ],
+    [
+        "text" => "Questions",
+        "url" => "questions",
+        "title" => "Forum questions",
+    ],
+    [
+        "text" => "Users",
+        "url" => "user",
+        "title" => "View all users",
+    ],
+];
+
+if ($session->has("userEmail")) {
+    array_push($items, [
+        "text" => "Profile",
+        "url" => "user/profile",
+        "title" => "View users profile",
+        "class" => "nav-login nav-left",
+    ], [
+        "text" => "Logout",
+        "url" => "user/logout",
+        "title" => "Logout",
+        "class" => "nav-login",
+    ]);
+} else {
+    array_push($items, [
+        "text" => "Register",
+        "url" => "user/register",
+        "title" => "Register user",
+        "class" => "nav-login nav-left",
+    ], [
+        "text" => "Login",
+        "url" => "user/login",
+        "title" => "Login",
+        "class" => "nav-login",
+    ]);
+}
+
 return [
     // Use for styling the menu
     "id" => "rm-menu",
-    "wrapper" => null,
     "class" => "rm-default rm-mobile",
- 
+
     // Here comes the menu items
-    "items" => [
-        [
-            "text" => "Hem",
-            "url" => "",
-            "title" => "Första sidan, börja här.",
-        ],
-        [
-            "text" => "Redovisning",
-            "url" => "redovisning",
-            "title" => "Redovisningstexter från kursmomenten.",
-            "submenu" => [
-                "items" => [
-                    [
-                        "text" => "Kmom01",
-                        "url" => "redovisning/kmom01",
-                        "title" => "Redovisning för kmom01.",
-                    ],
-                    [
-                        "text" => "Kmom02",
-                        "url" => "redovisning/kmom02",
-                        "title" => "Redovisning för kmom02.",
-                    ],
-                ],
-            ],
-        ],
-        [
-            "text" => "Om",
-            "url" => "om",
-            "title" => "Om denna webbplats.",
-        ],
-        [
-            "text" => "Styleväljare",
-            "url" => "style",
-            "title" => "Välj stylesheet.",
-        ],
-        [
-            "text" => "Verktyg",
-            "url" => "verktyg",
-            "title" => "Verktyg och möjligheter för utveckling.",
-        ],
-    ],
+    "items" => $items
 ];

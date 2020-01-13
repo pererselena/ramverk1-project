@@ -43,7 +43,7 @@ namespace Anax\View;
                         <td><?= $question->score; ?></td>
                     </tr>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </tbody>
@@ -67,7 +67,7 @@ namespace Anax\View;
                         <td><?= $answer->score; ?></td>
                     </tr>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </tbody>
@@ -91,7 +91,7 @@ namespace Anax\View;
                         <td><?= $qcomment->score; ?></td>
                     </tr>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </tbody>
@@ -115,7 +115,7 @@ namespace Anax\View;
                         <td><?= $acomment->score; ?></td>
                     </tr>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </tbody>

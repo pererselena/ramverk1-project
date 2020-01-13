@@ -41,7 +41,7 @@ class AnswerController implements ContainerInjectableInterface
      */
     public function indexActionGet(): object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         return $page->render([
             "title" => "A index page",
         ]);

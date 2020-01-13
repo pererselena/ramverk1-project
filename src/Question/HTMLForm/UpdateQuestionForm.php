@@ -39,7 +39,7 @@ class UpdateQuestionForm extends FormModel
                 "title" => [
                     "type"        => "text",
                     "required" => "true",
-                    "value" => $question->title
+                    "value" => $question->title,
                 ],
 
                 "text" => [
@@ -53,6 +53,7 @@ class UpdateQuestionForm extends FormModel
 
                     "options" => $allTags,
                     "checked"   => $selectedTags,
+                    "required" => "true"
                 ],
 
                 "submit" => [

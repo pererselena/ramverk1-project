@@ -10,14 +10,15 @@ namespace Anax\View;
 <h2>Most active users</h2>
 <?php if (!$users) : ?>
     <p>There are no users to show.</p>
-<?php
+    <?php
     return;
 endif;
 $count = 0;
 ?>
 <div class="users">
     <?php foreach ($users as $user) : ?>
-        <?php if ($count >= 5) : break;
+        <?php if ($count >= 5) :
+            break;
         endif;
         ?>
         <div class="user">
@@ -32,20 +33,21 @@ $count = 0;
                 </div>
             </a>
         </div>
-    <?php $count++;
+        <?php $count++;
     endforeach; ?>
 </div>
 
 <h2>Recent questions</h2>
 <?php if (!$questions) : ?>
     <p><i>There are no questions to show.</i></p>
-<?php
+    <?php
     return;
 endif;
 $count = 0;
 ?>
 <?php foreach ($questions as $question) : ?>
-    <?php if ($count >= 3) : break;
+    <?php if ($count >= 3) :
+        break;
     endif;
     ?>
     <div class="question-container">
@@ -79,19 +81,19 @@ $count = 0;
                         #<?= $tag->tag; ?>
                     </a>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </div>
     </div>
-<?php $count++;
+    <?php $count++;
 endforeach; ?>
 <h2>Popular tags</h2>
 
 <?php if (!$popular) : ?>
     <p>There is no tags to show.</p>
-<?php
-    return;
+    <?php
+        return;
 endif;
 ?>
 <div class="tags">

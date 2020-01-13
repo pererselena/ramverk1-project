@@ -22,7 +22,7 @@ class UpdateForm extends FormModel
         parent::__construct($di);
         $user = $this->getItemDetails($email);
         $this->form->create(
-[
+            [
                 "id" => __CLASS__,
                 "legend" => "Update profile",
             ],

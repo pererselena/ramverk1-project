@@ -14,7 +14,7 @@ namespace Anax\View;
 </div>
 <?php if (!$questions) : ?>
     <p><i>There are no questions to show.</i></p>
-<?php
+    <?php
     return;
 endif;
 ?>
@@ -53,7 +53,7 @@ endif;
                         #<?= $tag->tag; ?>
                     </a>
                 <?php endforeach; ?>
-            <?php
+                <?php
             endif;
             ?>
         </div>

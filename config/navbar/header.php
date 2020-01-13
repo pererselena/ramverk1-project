@@ -37,7 +37,6 @@ $items = [
 ];
 
 if ($session->has("userEmail")) {
-
     array_push($items, [
         "text" => "Profile",
         "url" => "user/profile",

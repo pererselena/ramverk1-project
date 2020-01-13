@@ -78,30 +78,30 @@ class User extends ActiveRecordModel
     {
         $this->findById($userId);
         $this->score += $score;
-
     }
 
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
      *
      * @param string $email The email address
-     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
-     * @param string $d Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
-     * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+     * @param string $size Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string $default Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
+     * @param string $rating Maximum rating (inclusive) [ g | pg | r | x ]
      * @param boole $img True to return a complete IMG tag False for just the URL
      * @param array $atts Optional, additional key/value attributes to include in the IMG tag
      * @return String containing either just a URL or a complete image tag
      * @source https://gravatar.com/site/implement/images/php/
      */
-    function gravatar($email, $s = 250, $d = 'monsterid', $r = 'g', $img = false, $atts = array())
+    public function gravatar($email, $size = 250, $default = 'monsterid', $rating = 'g', $img = false, $atts = array())
     {
         $url = 'https://www.gravatar.com/avatar/';
         $url .= md5(strtolower(trim($email)));
-        $url .= "?s=$s&d=$d&r=$r";
+        $url .= "?s=$size&d=$default&r=$rating";
         if ($img) {
             $url = '<img src="' . $url . '"';
-            foreach ($atts as $key => $val)
+            foreach ($atts as $key => $val) {
                 $url .= ' ' . $key . '="' . $val . '"';
+            }
             $url .= ' />';
         }
         $this->image = $url;
@@ -110,7 +110,7 @@ class User extends ActiveRecordModel
     /**
      * Calculate activity score.
      *
-     * @param object $di 
+     * @param object $di
      *
      * @return void
      */
@@ -137,7 +137,7 @@ class User extends ActiveRecordModel
     /**
      * Calculate reputation levels.
      *
-     * @param object $di 
+     * @param object $di
      *
      * @return void
      */
@@ -147,6 +147,10 @@ class User extends ActiveRecordModel
         $score = $this->activityScore;
         if ($score < 10) {
             $this->reputation = "Newcomer";
+        } elseif ($score > 20 && $score < 50) {
+            $this->reputation = "Experienced";
+        } elseif ($score > 50 && $score < 100) {
+            $this->reputation = "Travel freak";
         } elseif ($score > 100) {
             $this->reputation = "Guru";
         } else {

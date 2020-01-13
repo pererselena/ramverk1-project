@@ -12,7 +12,7 @@ namespace Anax\View;
 
 <?php if (!$question) : ?>
     <p>There is no question to show.</p>
-<?php
+    <?php
     return;
 endif;
 ?>
@@ -55,7 +55,7 @@ endif;
                     #<?= $tag->tag; ?>
                 </a>
             <?php endforeach; ?>
-        <?php
+            <?php
         endif;
         ?>
     </div>
@@ -100,7 +100,7 @@ endif;
                     </div>
                 </div>
             <?php endforeach; ?>
-        <?php
+            <?php
         endif;
         ?>
     </div>
@@ -128,10 +128,10 @@ endif;
                     <a href="../../answer/accepted/<?= $answer->id ?>">
                         <?php if ($answer->accepted == "1") : ?>
                             <div class="check"></div>
-                        <?php
+                            <?php
                         else : ?>
                             <div class="check gray"></div>
-                        <?php
+                            <?php
                         endif;
                         ?>
                     </a>
@@ -196,12 +196,12 @@ endif;
                             </div>
                         </div>
                     <?php endforeach; ?>
-                <?php
+                    <?php
                 endif;
                 ?>
             </div>
         <?php endforeach; ?>
-    <?php
+        <?php
     endif;
     ?>
 </div>

@@ -78,7 +78,7 @@ class HomeController implements ContainerInjectableInterface
         foreach ($users as $curUser) {
             $curUser->getReputation($this->di);
         }
-        usort($users, function($first, $second){
+        usort($users, function ($first, $second) {
             return $first->activityScore < $second->activityScore;
         });
 
@@ -101,7 +101,7 @@ class HomeController implements ContainerInjectableInterface
      *
      * @throws Exception
      *
-     * @return array 
+     * @return array
      */
     public function getTagsFromId($tags)
     {
@@ -114,7 +114,6 @@ class HomeController implements ContainerInjectableInterface
             } else {
                 array_push($tagArr, $tag->findWhere("id = ?", $item));
             }
-            
         }
         return $tagArr;
     }

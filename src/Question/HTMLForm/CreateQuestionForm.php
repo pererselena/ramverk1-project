@@ -42,8 +42,9 @@ class CreateQuestionForm extends FormModel
                     "type" => "select-multiple",
                     "label" => "Select one or more tags",
 
-                    "options" => $allTags
+                    "options" => $allTags,
                     //"value"   => "8",
+                    "required" => "true"
                 ],
 
                 "submit" => [

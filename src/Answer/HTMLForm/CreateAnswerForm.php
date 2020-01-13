@@ -20,7 +20,6 @@ class CreateAnswerForm extends FormModel
     public function __construct(ContainerInterface $di, int $qid)
     {
         parent::__construct($di);
-        $answer = new Answer;
         $this->form->create(
             [
                 "id" => __CLASS__,

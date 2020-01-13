@@ -12,7 +12,7 @@ namespace Anax\View;
 
 <?php if (!$tags) : ?>
     <p>There is no tags to show.</p>
-<?php
+    <?php
     return;
 endif;
 ?>

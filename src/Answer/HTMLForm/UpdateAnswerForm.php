@@ -42,6 +42,7 @@ class UpdateAnswerForm extends FormModel
                 "text" => [
                     "type"        => "textarea",
                     "value" => $answer->text,
+                    "required" => "true"
                 ],
 
                 "submit" => [

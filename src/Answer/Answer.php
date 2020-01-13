@@ -120,5 +120,4 @@ class Answer extends ActiveRecordModel
 
         $this->delete;
     }
-
 }

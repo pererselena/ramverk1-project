@@ -35,7 +35,7 @@ class TagController implements ContainerInjectableInterface
      */
     public function indexActionGet(): object
     {
-        $page = $this->di->get("page");;
+        $page = $this->di->get("page");
         $tag = new Tag();
         $tag->setDb($this->di->get("dbqb"));
         $tags = $tag->findAll();
