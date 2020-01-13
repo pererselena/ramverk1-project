@@ -20,9 +20,6 @@ endif;
     <div class="profileBtn">
         <a href="../../answer/create/<?= $question->id ?>">Add answer</a>
     </div>
-    <div class="profileBtn">
-        <a href="../update/<?= $question->id ?>">Edit question</a>
-    </div>
 </div>
 
 
@@ -31,6 +28,7 @@ endif;
     <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
     <div class="question">
         <div class="score">
+            <a href="../update/<?= $question->id ?>"><i class="fas fa-edit"></i></a>
             <a href="../../questions/vote/<?= $question->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
             <div class="vote-count"><?= $question->score; ?></div>
             <a href="../../questions/vote/<?= $question->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>

@@ -5887,11 +5887,15 @@ main h2 {
 /** 
  * Style for score
  */
+.score .fas {
+  font-size: 2em;
+}
 .vote-up,
 .vote-down {
   border: none;
   background-color: white;
   cursor: pointer;
+  text-align: center;
 }
 .vote-up i,
 .vote-down i {
@@ -5907,6 +5911,9 @@ main h2 {
 .vote-up .down,
 .vote-down .down {
   transform: rotate(45deg);
+}
+.vote-count {
+  text-align: center;
 }
 .check {
   display: inline-block;

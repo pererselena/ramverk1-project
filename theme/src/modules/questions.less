@@ -92,11 +92,18 @@
  * Style for score
  */
 
+.score {
+    .fas {
+        font-size: 2em;
+    }
+}
+
 .vote-up,
 .vote-down {
     border: none;
     background-color: white;
     cursor: pointer;
+    text-align: center;
     i {
         border: solid black;
         border-width: 0 3px 3px 0;
@@ -109,6 +116,10 @@
     .down {
         transform: rotate(45deg);
     }
+}
+
+.vote-count {
+    text-align: center;
 }
 
 .check {
