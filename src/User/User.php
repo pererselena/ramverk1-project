@@ -144,7 +144,7 @@ class User extends ActiveRecordModel
     public function getReputation($di)
     {
         $this->activityScore($di);
-        $score = $this->activityScore;
+        $score = $this->activityScore + $this->score;
         if ($score < 10) {
             $this->reputation = "Newcomer";
         } elseif ($score > 20 && $score < 50) {
