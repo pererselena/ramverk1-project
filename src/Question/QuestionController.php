@@ -71,6 +71,8 @@ class QuestionController implements ContainerInjectableInterface
             $quest->user->getReputation($this->di);
         }
 
+        $page->add("home/flash", [], "flash");
+
         $page->add("question/all", [
             "questions" => $questions,
         ]);

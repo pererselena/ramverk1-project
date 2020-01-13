@@ -42,7 +42,7 @@ class UserController implements ContainerInjectableInterface
         foreach ($users as $curUser) {
             $curUser->getReputation($this->di);
         }
-
+        $page->add("home/flash", [], "flash");
         $page->add("user/users", [
             "users" => $users,
         ]);

@@ -39,7 +39,7 @@ class TagController implements ContainerInjectableInterface
         $tag = new Tag();
         $tag->setDb($this->di->get("dbqb"));
         $tags = $tag->findAll();
-
+        $page->add("home/flash", [], "flash");
         $page->add("question/tags", [
             "tags" => $tags,
         ]);
