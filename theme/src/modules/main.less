@@ -15,8 +15,16 @@ body {
     font-family: @fontFamilyBody;
 }
 
-h1,
-h2 {
-    font-family: @fontFamilyHeadings;
+
+main {
+    > div {
+        margin-bottom: @magicNumber * 2;
+    }
+    h1,
+    h2 {
+        font-family: @fontFamilyHeadings;
+        font-size: 2.8em;
+        margin-bottom: @magicNumber * 2;
+    }
 }
 

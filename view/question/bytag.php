@@ -23,8 +23,7 @@ endif;
         <a href="../../questions/question/<?= $question->id ?>">
             <h3><?= $question->title; ?></h3>
         </a>
-        <p>Created <?= date('Y/m/d H:i:s', $question->created); ?></p>
-        <p>Answers: <?= $question->numAns ?></p>
+        <p>Created <?= date('Y/m/d H:i:s', $question->created); ?> <span class="answer-span">Answers: <?= $question->numAns ?></span></p>
         <div class="question">
             <div class="score">
                 <a href="../../questions/vote/<?= $question->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>

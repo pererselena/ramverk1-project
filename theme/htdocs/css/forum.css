@@ -5708,9 +5708,14 @@ input:placeholder {
 body {
   font-family: 'Saira', sans-serif;
 }
-h1,
-h2 {
+main > div {
+  margin-bottom: 48px;
+}
+main h1,
+main h2 {
   font-family: 'Julius Sans One', sans-serif;
+  font-size: 2.8em;
+  margin-bottom: 48px;
 }
 /** --------------------------------------------------------------
  * user
@@ -5734,20 +5739,21 @@ h2 {
   color: #333;
 }
 .user a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  text-shadow: 0 0 3px rgba(112, 112, 112, 0.781);
 }
 .user-img img {
   border-radius: 50%;
   width: 100px;
 }
-.user-small h3,
 .user-small p {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 .user-small h3 {
   font-size: 1.2em;
   color: #2e73b5;
+  margin-bottom: 10px;
 }
 /** 
  * Style for profile page
@@ -5806,27 +5812,30 @@ h2 {
 /** 
  * Style for questions page
  */
-.question-container a {
+.question-container > a {
   text-decoration: none;
   color: #333;
 }
-.question-container a h3 {
+.question-container > a h3 {
   color: #2e73b5;
 }
-.question-container a h3:hover {
+.question-container > a:hover {
   color: #2e73b5;
-}
-.question-container a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  text-shadow: 0 0 3px rgba(112, 112, 112, 0.781);
 }
 .question-container > p {
   padding: 5px;
-  background-color: #333333;
+  background-image: linear-gradient(to left, #61c69d 0, #2d72bc 100%);
   color: #ffffff;
+}
+.question-container .answer-span {
+  float: right;
 }
 .question {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 .question .text {
   margin-right: 20px;
@@ -5850,6 +5859,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 24px;
 }
 .tags a {
   padding: 5px;

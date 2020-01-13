@@ -7,32 +7,32 @@
  */
 
 .question-container {
-    a {
+    > a {
         text-decoration: none;
         color: @colorBody;
         & h3{
             color: #2e73b5;
-            &:hover {
-            color: #2e73b5;
-            }
         }
-    }
-    // a:visited {
-    //     color: @colorBody;
-    // }
-    a:hover {
-        text-decoration: underline;
+        &:hover {
+            color: #2e73b5;
+            text-decoration: none;
+            text-shadow: 0 0 3px rgba(112, 112, 112, 0.781);
+        }
     }
     > p {
         padding: 5px;
-        background-color: rgb(51, 51, 51);
+        background-image: linear-gradient(to left,rgb(97, 198, 157) 0,rgb(45, 114, 188) 100%);
         color: rgb(255, 255, 255);
+    }
+    .answer-span {
+        float: right;
     }
 }
 
 .question {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: @magicNumber;
     .text {
         margin-right: 20px;
         width: 75%;
@@ -59,6 +59,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: @magicNumber;
     & a {
         padding: 5px;
         color: #469aad;
