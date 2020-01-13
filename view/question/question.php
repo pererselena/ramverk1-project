@@ -29,6 +29,7 @@ endif;
     <div class="question">
         <div class="score">
             <a href="../update/<?= $question->id ?>"><i class="fas fa-edit"></i></a>
+            <a href="../delete/<?= $question->id ?>"><i class="fas fa-trash-alt"></i></a>
             <a href="../../questions/vote/<?= $question->id; ?>?vote=1" class="vote-up"><i class="up"></i></a>
             <div class="vote-count"><?= $question->score; ?></div>
             <a href="../../questions/vote/<?= $question->id; ?>?vote=-1" class="vote-down"><i class="down"></i></a>
@@ -94,6 +95,9 @@ endif;
                     <div class="profileBtn">
                         <a href="../updatecomment/<?= $comment->id ?>">Edit comment</a>
                     </div>
+                    <div class="profileBtn">
+                        <a href="../deletecomment/<?= $comment->id ?>">Delete comment</a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php
@@ -151,6 +155,9 @@ endif;
                     <a href="../../answer/update/<?= $answer->id ?>">Edit answer</a>
                 </div>
                 <div class="profileBtn">
+                    <a href="../../answer/delete/<?= $answer->id ?>">Delete answer</a>
+                </div>
+                <div class="profileBtn">
                     <a href="../../answer/createcomment/<?= $answer->id ?>">Add comment</a>
                 </div>
             </div>
@@ -183,6 +190,9 @@ endif;
                         <div class="buttons-container">
                             <div class="profileBtn">
                                 <a href="../../answer/updatecomment/<?= $comment->id ?>">Edit comment</a>
+                            </div>
+                            <div class="profileBtn">
+                                <a href="../../answer/deletecomment/<?= $comment->id ?>">Delete comment</a>
                             </div>
                         </div>
                     <?php endforeach; ?>

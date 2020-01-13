@@ -405,7 +405,7 @@ class AnswerController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $session = $this->di->get("session");
         $userId = $session->get("userId");
-        $aComment = new AComment();
+        $aComment = new Acomment();
         $aComment->setDb($this->di->get("dbqb"));
         $aComment->findById($id);
         $answer = new Answer();
