@@ -5956,6 +5956,15 @@ img {
 select {
   width: 80%;
 }
+a,
+.sort {
+  display: inline;
+  color: #469aad;
+}
+a:visited,
+.sort:visited {
+  color: #469aad;
+}
 /**
  * Layout style for general structure of header, navbar, main, footer
  * and other regions of the page including route specific styles.

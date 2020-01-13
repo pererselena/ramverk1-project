@@ -5842,7 +5842,6 @@ h2 {
 .tags a {
   padding: 5px;
   background-color: #333333;
-  color: #ffffff;
   border: 3px solid rgba(51, 51, 51, 0.883);
 }
 .tags a:hover {
@@ -5895,6 +5894,28 @@ h2 {
 }
 .answer-container > h4 {
   color: #2e73b5;
+}
+/** --------------------------------------------------------------
+ * Table
+ */
+/** 
+ * Style for tables
+ */
+.profile-questions table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.profile-questions th,
+.profile-questions td {
+  text-align: left;
+  padding: 8px;
+}
+.profile-questions tr:hover {
+  text-shadow: 0 0 3px rgba(146, 146, 146, 0.781);
+}
+.profile-questions th {
+  background-color: #313131c2;
+  color: white;
 }
 /** --------------------------------------------------------------
  * Footer
@@ -6239,6 +6260,15 @@ img {
 }
 select {
   width: 80%;
+}
+a,
+.sort {
+  display: inline;
+  color: #469aad;
+}
+a:visited,
+.sort:visited {
+  color: #469aad;
 }
 /**
  * Layout style for general structure of header, navbar, main, footer
