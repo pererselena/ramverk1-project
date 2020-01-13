@@ -101,4 +101,24 @@ class Answer extends ActiveRecordModel
             $answer->save();
         }
     }
+
+    /**
+     * Delete with comments.
+     *
+     *
+     * @return array
+     */
+    public function removeWithComments($di)
+    {
+        $comment = new Acomment();
+        $comment->setDb($di->get("dbqb"));
+        $comments = $comment->findAllWhere("aid = ?", $this->id);
+        foreach ($comments as $comment) {
+            $comment->setDb($di->get("dbqb"));
+            $comment->delete();
+        }
+
+        $this->delete;
+    }
+
 }
