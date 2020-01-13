@@ -226,10 +226,10 @@ class QuestionController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
-        $qid = $question->findById($id)->id;
         $comment = new QComment();
         $comment->setDb($this->di->get("dbqb"));
         $comment->findById($id);
+        $qid = $question->findById($comment->qid)->id;
         $session = $this->di->get("session");
         $userId = $session->get("userId");
         if ((int) $comment->uid == (int) $userId) {

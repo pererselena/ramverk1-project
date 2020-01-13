@@ -113,13 +113,13 @@ class AnswerController implements ContainerInjectableInterface
             return $this->di->response->redirect("user/login");
         }
         $page = $this->di->get("page");
-        $answer = new Answer();
-        $answer->setDb($this->di->get("dbqb"));
-        $ans = $answer->findById($id);
-        $qid = $answer->findById($ans->id)->qid;
         $comment = new AComment();
         $comment->setDb($this->di->get("dbqb"));
         $comment->findById($id);
+        $answer = new Answer();
+        $answer->setDb($this->di->get("dbqb"));
+        $ans = $answer->findById($comment->aid);
+        $qid = $answer->findById($ans->id)->qid;
         $session = $this->di->get("session");
         $userId = $session->get("userId");
         if ((int) $comment->uid == (int) $userId) {
@@ -129,8 +129,6 @@ class AnswerController implements ContainerInjectableInterface
             $page->add("anax/v2/article/default", [
                 "content" => $form->getHTML(),
             ]);
-            var_dump($userId);
-            var_dump($ans->uid);
 
             return $page->render([
                 "title" => "A update comment page",
