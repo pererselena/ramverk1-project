@@ -148,4 +148,29 @@ class Question extends ActiveRecordModel
 
         return $comments;
     }
+
+    /**
+     * Delete with answers and comments.
+     *
+     *
+     * @return void
+     */
+    public function removeWithComments($di)
+    {
+        $comment = new Qcomment();
+        $comment->setDb($di->get("dbqb"));
+        $comments = $comment->findAllWhere("qid = ?", $this->id);
+        foreach ($comments as $comm) {
+            $comm->setDb($di->get("dbqb"));
+            $comm->delete();
+        }
+        $answer = new Answer();
+        $answer->setDb($di->get("dbqb"));
+        $answers = $answer->findAllWhere("qid = ?", $this->id);
+        foreach ($answers as $ans) {
+            $ans->setDb($di->get("dbqb"));
+            $ans->removeWithComments($di);
+        }
+        $this->delete();
+    }
 }

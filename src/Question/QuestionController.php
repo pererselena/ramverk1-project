@@ -224,15 +224,32 @@ class QuestionController implements ContainerInjectableInterface
             return $this->di->response->redirect("user/login");
         }
         $page = $this->di->get("page");
-        $form = new UpdateCommentForm($this->di, $id);
-        $form->check();
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $qid = $question->findById($id)->id;
+        $comment = new QComment();
+        $comment->setDb($this->di->get("dbqb"));
+        $comment->findById($id);
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        if ((int) $comment->uid == (int) $userId) {
+            $form = new UpdateCommentForm($this->di, $id, $qid);
+            $form->check();
 
+            $page->add("anax/v2/article/default", [
+                "content" => $form->getHTML(),
+            ]);
+
+            return $page->render([
+                "title" => "A update comment page",
+            ]);
+        }
         $page->add("anax/v2/article/default", [
-            "content" => $form->getHTML(),
+            "content" => "OOPS!!! You are not the owner of this comment!",
         ]);
 
         return $page->render([
-            "title" => "A update comment page",
+            "title" => "Error",
         ]);
     }
 
@@ -258,7 +275,7 @@ class QuestionController implements ContainerInjectableInterface
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $quest = $question->findById($id);
-        if ($quest->uid == $userId) {
+        if ((int)$quest->uid == (int)$userId) {
             $form = new UpdateQuestionForm($this->di, $id);
             $form->check();
 
@@ -303,7 +320,7 @@ class QuestionController implements ContainerInjectableInterface
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $question->findById($id);
-        if ($question->uid !== $userId) {
+        if ((int)$question->uid !== (int)$userId) {
             $question->score += $vote;
             $user->findById($userId);
             $user->votes += 1;
@@ -347,7 +364,7 @@ class QuestionController implements ContainerInjectableInterface
         $comment = new Qcomment();
         $comment->setDb($this->di->get("dbqb"));
         $comment->findById($id);
-        if ($comment->uid !== $userId) {
+        if ((int)$comment->uid !== (int)$userId) {
             $comment->score += $vote;
             $user->findById($userId);
             $user->votes += 1;
@@ -360,6 +377,75 @@ class QuestionController implements ContainerInjectableInterface
         }
         $page->add("anax/v2/article/default", [
             "content" => "OOPS!!! You are the owner of this comment! Cheater!!!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function deleteAction(int $id): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $question = new Question();
+        $question->setDb($this->di->get("dbqb"));
+        $question->findById($id);
+        if ((int) $question->uid == (int) $userId) {
+            $question->removeWithComments($this->di);
+            return $this->di->response->redirect("questions/");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are not the owner of this question!",
+        ]);
+
+        return $page->render([
+            "title" => "Error",
+        ]);
+    }
+    /**
+     * Description.
+     *
+     * @param datatype $variable Description
+     *
+     * @throws Exception
+     *
+     * @return object as a response object
+     */
+    public function deletecommentAction(int $id): object
+    {
+        if (!$this->isLoggedIn()) {
+            return $this->di->response->redirect("user/login");
+        }
+        $page = $this->di->get("page");
+        $user = new User();
+        $user->setDb($this->di->get("dbqb"));
+        $session = $this->di->get("session");
+        $userId = $session->get("userId");
+        $qComment = new QComment();
+        $qComment->setDb($this->di->get("dbqb"));
+        $qComment->findById($id);
+        if ((int) $qComment->uid == (int) $userId) {
+            $qComment->delete();
+            return $this->di->response->redirect("questions/question/$qComment->qid");
+        }
+        $page->add("anax/v2/article/default", [
+            "content" => "OOPS!!! You are not the owner of this comment!",
         ]);
 
         return $page->render([
