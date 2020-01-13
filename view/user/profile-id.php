@@ -21,6 +21,7 @@ namespace Anax\View;
         <p>Answers: <?= $numAnswer; ?></p>
         <p>Comments: <?= $numComments; ?></p>
         <p>Votes: <?= $profile->votes; ?></p>
+        <p>Reputation: <?= $profile->reputation; ?></p>
     </div>
 </div>
 <div class="profile-questions">

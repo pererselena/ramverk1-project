@@ -26,6 +26,7 @@ endif;
                     <h3><?= $user->name; ?></h3>
                     <p>Score: <?= $user->score; ?></p>
                     <p>Activity score: <?= $user->activityScore; ?></p>
+                    <p><?= $user->reputation; ?></p>
                 </div>
             </a>
         </div>

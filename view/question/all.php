@@ -41,6 +41,7 @@ endif;
                     <div class="user-small">
                         <h3><?= $question->user->name; ?></h3>
                         <p>Score: <?= $question->user->score; ?></p>
+                        <p><?= $question->user->reputation; ?></p>
                     </div>
                 </a>
             </div>

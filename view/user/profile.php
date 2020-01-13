@@ -23,6 +23,7 @@ namespace Anax\View;
         <p>Answers: <?= $numAnswer; ?></p>
         <p>Comments: <?= $numComments; ?></p>
         <p>Votes: <?= $user->votes; ?></p>
+        <p>Reputation: <?= $user->reputation; ?></p>
     </div>
 </div>
 <div class="profileBtn">

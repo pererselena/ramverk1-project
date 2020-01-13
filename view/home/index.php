@@ -28,6 +28,7 @@ $count = 0;
                 <div class="user-small">
                     <h3><?= $user->name; ?></h3>
                     <p>Activity score: <?= $user->activityScore; ?></p>
+                    <p>Reputation: <?= $user->reputation; ?></p>
                 </div>
             </a>
         </div>
@@ -67,6 +68,7 @@ $count = 0;
                     <div class="user-small">
                         <h3><?= $question->user->name; ?></h3>
                         <p>Score: <?= $question->user->score; ?></p>
+                        <p><?= $user->reputation; ?></p>
                     </div>
                 </a>
             </div>
