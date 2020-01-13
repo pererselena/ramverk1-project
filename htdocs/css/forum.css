@@ -5765,9 +5765,6 @@ main h2 {
   min-height: 8em;
   align-items: center;
 }
-.profileBtn {
-  margin-bottom: 96px;
-}
 .profileBtn a {
   color: #333;
   text-decoration: none;
@@ -5831,6 +5828,21 @@ main h2 {
 }
 .question-container .answer-span {
   float: right;
+}
+.question-container .comment {
+  margin-left: 150px;
+}
+.question-container .comment > p {
+  padding: 0;
+  background-image: none;
+  color: #333;
+}
+.question-container .comment .user-img img {
+  width: 60px;
+}
+.question-container .comment .user-small h3 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .question {
   display: flex;
