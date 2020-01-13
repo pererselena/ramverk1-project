@@ -118,6 +118,4 @@ class HomeController implements ContainerInjectableInterface
         }
         return $tagArr;
     }
-
-    
 }

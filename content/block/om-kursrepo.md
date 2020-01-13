@@ -1,3 +1,3 @@
-#### Kursrepo
+#### GitHub repo
 
-Skriv något kort om kursen och länka till [kursens hemsida på dbwebb.se](XXX) och till [kursrepot på GitHub](XXX).
+This is the repository for this project [Travelers](https://github.com/pererselena/ramverk1-project)
