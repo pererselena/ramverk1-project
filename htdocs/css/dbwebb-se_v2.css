@@ -6859,8 +6859,8 @@ a.rm-button.rm-clicked .rm-button-face-2 {
 }
 .footer-column-wrapper {
   color: #ddd;
-  padding-bottom: 24px;
-  margin-bottom: 48px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 .footer-column-wrapper ul {
   list-style: none;
