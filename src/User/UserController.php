@@ -40,7 +40,7 @@ class UserController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $users = $user->findAll();
         foreach ($users as $curUser) {
-            $curUser->activityScore($this->di);
+            $curUser->getReputation($this->di);
         }
 
         $page->add("user/users", [
@@ -159,6 +159,7 @@ class UserController implements ContainerInjectableInterface
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $session = $this->di->get("session");
+        $user->getReputation($this->di);
         $id = $session->get("userId");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
@@ -210,6 +211,7 @@ class UserController implements ContainerInjectableInterface
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $profile = $user->findById($id);
+        $profile->getReputation($this->di);
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $questions = $question->findAllWhere("uid = ?", $id);

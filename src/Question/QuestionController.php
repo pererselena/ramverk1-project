@@ -68,6 +68,7 @@ class QuestionController implements ContainerInjectableInterface
             $user = new User();
             $user->setDb($this->di->get("dbqb"));
             $quest->user = $user->findById($quest->uid);
+            $quest->user->getReputation($this->di);
         }
 
         $page->add("question/all", [
@@ -163,6 +164,7 @@ class QuestionController implements ContainerInjectableInterface
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $quest->user = $user->findById($quest->uid);
+        $quest->user->getReputation($this->di);
 
         $quest->answers = $quest->getAnswers($this->di, $sort);
         $quest->comments = $quest->getComments($this->di);

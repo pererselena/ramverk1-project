@@ -75,7 +75,7 @@ class HomeController implements ContainerInjectableInterface
         $user->setDb($this->di->get("dbqb"));
         $users = $user->findAll();
         foreach ($users as $curUser) {
-            $curUser->activityScore($this->di);
+            $curUser->getReputation($this->di);
         }
         usort($users, function($first, $second){
             return $first->activityScore < $second->activityScore;

@@ -134,4 +134,23 @@ class User extends ActiveRecordModel
 
         $this->activityScore = $numAnswer + $numComments + $numQuest + $this->votes;
     }
+    /**
+     * Calculate reputation levels.
+     *
+     * @param object $di 
+     *
+     * @return void
+     */
+    public function getReputation($di)
+    {
+        $this->activityScore($di);
+        $score = $this->activityScore;
+        if ($score < 10) {
+            $this->reputation = "Newcomer";
+        } elseif ($score > 100) {
+            $this->reputation = "Guru";
+        } else {
+            $this->reputation = "Regular";
+        }
+    }
 }
