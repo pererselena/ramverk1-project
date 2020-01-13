@@ -1,3 +1,5 @@
-#### Footer col 3
+#### Social
 
-Med brödtext i ett stycke som säger något trevligt om just detta block, eller kanske en lista av länkar.
+[<i class="fab fa-facebook"></i>](https://facebook.com)     
+[<i class="fab fa-twitter"></i>](https://twitter.com)      
+[<i class="fab fa-instagram"></i>](https://instagram.com)

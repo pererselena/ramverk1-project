@@ -1,3 +1,6 @@
-#### Footer col 2
+#### Links
 
-Med brödtext i ett stycke som säger något trevligt om just detta block, eller kanske en lista av länkar.
+[<i class="fas fa-home"></i> Home]()     
+[<i class="fas fa-tags"></i> Tags](tags)     
+[<i class="fas fa-question-circle"></i> Questions](questions)     
+[<i class="fas fa-users"></i> Users](user)    
