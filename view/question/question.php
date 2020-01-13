@@ -89,7 +89,7 @@ endif;
                         <div class="user-small">
                             <h3><?= $comment->user->name; ?></h3>
                             <p>Score: <?= $comment->user->score; ?></p>
-                            <p><?= $question->user->reputation; ?></p>
+                            <p><?= $comment->user->reputation; ?></p>
                         </div>
                     </a>
                 </div>
@@ -142,7 +142,7 @@ endif;
                         <div class="user-small">
                             <h3><?= $answer->user->name; ?></h3>
                             <p>Score: <?= $answer->user->score; ?></p>
-                            <p><?= $question->user->reputation; ?></p>
+                            <p><?= $answer->user->reputation; ?></p>
                         </div>
                     </a>
                 </div>
@@ -176,7 +176,7 @@ endif;
                                     <div class="user-small">
                                         <h3><?= $comment->user->name; ?></h3>
                                         <p>Score: <?= $comment->user->score; ?></p>
-                                        <p><?= $question->user->reputation; ?></p>
+                                        <p><?= $comment->user->reputation; ?></p>
                                     </div>
                                 </a>
                             </div>

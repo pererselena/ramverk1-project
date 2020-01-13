@@ -88,6 +88,7 @@ class TagController implements ContainerInjectableInterface
             $user = new User();
             $user->setDb($this->di->get("dbqb"));
             $quest->user = $user->findById($quest->uid);
+            $quest->user->getReputation($this->di);
         }
 
         $page->add("question/bytag", [

@@ -110,6 +110,7 @@ class Question extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $answer->user = $user->findById($answer->uid);
+            $answer->user->getReputation($di);
             $textFilter = new TextFilter();
             $answer->text = $textFilter->markdown($answer->text);
         }
@@ -140,6 +141,7 @@ class Question extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $comment->user = $user->findById($comment->uid);
+            $comment->user->getReputation($di);
             $textFilter = new TextFilter();
             $comment->text = $textFilter->markdown($comment->text);
         }

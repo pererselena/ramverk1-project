@@ -77,6 +77,7 @@ class Answer extends ActiveRecordModel
             $user = new User();
             $user->setDb($di->get("dbqb"));
             $comment->user = $user->findById($comment->uid);
+            $comment->user->getReputation($di);
             $textFilter = new TextFilter();
             $comment->text = $textFilter->markdown($comment->text);
         }

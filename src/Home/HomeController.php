@@ -67,6 +67,7 @@ class HomeController implements ContainerInjectableInterface
             $user = new User();
             $user->setDb($this->di->get("dbqb"));
             $quest->user = $user->findById($quest->uid);
+            $quest->user->getReputation($this->di);
         }
         usort($questions, function ($first, $second) {
             return $first->created < $second->created;
