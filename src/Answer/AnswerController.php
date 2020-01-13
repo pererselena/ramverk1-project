@@ -223,13 +223,15 @@ class AnswerController implements ContainerInjectableInterface
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $question->findById($ans->qid);
-        $ans->unsetAccepted($this->di);
         if ($question->uid == $userId) {
-            // $all = $answer->findAll();
-            // foreach ($all as $curAns) {
-            //     $curAns->unsetAccepted($this->di);
-            // }
-            $ans->accepted = true;
+            if ((int)$ans->accepted == 0) {
+                $ans->unsetAccepted($this->di);
+                $ans->accepted = true;
+            } else {
+                $ans->unsetAccepted($this->di);
+                $ans->accepted = false;
+            }
+            
             $ans->save();
             return $this->di->response->redirect("questions/question/$ans->qid");
         }
