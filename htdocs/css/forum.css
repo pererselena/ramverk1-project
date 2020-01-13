@@ -5974,6 +5974,14 @@ main h2 {
   border-bottom: none;
   font-weight: bold;
 }
+.footer-column-1 i.fas,
+.footer-column-2 i.fas,
+.footer-column-3 i.fas,
+.footer-column-1 i.fab,
+.footer-column-2 i.fab,
+.footer-column-3 i.fab {
+  font-size: 1.5em;
+}
 /**
  * Base style to affect HTML elements on a general scale.
  */
